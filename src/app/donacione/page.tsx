@@ -118,9 +118,7 @@ export default async function DonationsPage() {
         </div>
 
         <div className="mt-10 rounded-3xl border border-border/70 bg-muted p-6 text-sm text-muted-foreground">
-          Për një përvojë edhe më profesionale (në fazën tjetër), mund të shtojmë:
-          panel administrimi, verifikim donatorësh, “campaigns”, dhe integrim me
-          pagesa online.
+         
         </div>
         </Container>
       </MotionSection>

@@ -19,6 +19,7 @@ const AladhanResponseSchema = z.object({
 
 export type PrayerTimes = {
   dateLabel: string;
+  locationLabel: string;
   timezone?: string;
   timings: {
     fajr: string;
@@ -31,6 +32,7 @@ export type PrayerTimes = {
 };
 
 const PRISHTINA = {
+  locationLabel: "Prishtinë",
   latitude: "42.6629",
   longitude: "21.1655",
   timezone: "Europe/Belgrade",
@@ -62,6 +64,7 @@ export async function getPrayerTimesForPrishtina(): Promise<PrayerTimes> {
       json.data.date?.readable ??
       json.data.date?.gregorian?.date ??
       "Sot",
+    locationLabel: PRISHTINA.locationLabel,
     timezone: json.data.meta?.timezone ?? PRISHTINA.timezone,
     timings: {
       fajr: pickTime(t, "Fajr"),

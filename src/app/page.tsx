@@ -139,8 +139,7 @@ function Hero({
           </div>
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-300">
             <div>
-              Prishtinë • {prayer.dateLabel}
-              {prayer.timezone ? ` • ${prayer.timezone}` : ""}
+              {prayer.locationLabel} • {prayer.dateLabel}
             </div>
             <div className="flex gap-3">
               <Link
