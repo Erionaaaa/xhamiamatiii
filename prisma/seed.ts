@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.mosqueInfo.deleteMany();
-  await prisma.video.deleteMany();
+  // Videot nuk fshihen më që të ruhen ato të shtuara nga admin.
   await prisma.videoCategory.deleteMany();
   await prisma.academyPost.deleteMany();
   await prisma.activity.deleteMany();
