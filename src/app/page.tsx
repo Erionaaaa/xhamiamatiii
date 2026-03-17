@@ -45,12 +45,12 @@ export default async function Home() {
         next={next}
       />
       <Sections />
-      <Quotes />
       <Latest
         posts={latestPosts}
         activities={latestActivities}
         videos={latestVideos}
       />
+      <Quotes />
       <Gallery />
     </main>
   );
@@ -85,7 +85,7 @@ function Hero({
       </div>
 
       <Container className="relative flex min-h-[72vh] flex-col justify-center gap-10 py-14 lg:min-h-[82vh]">
-        <div className="max-w-xl space-y-4 text-zinc-50">
+        <div className="max-w-xl space-y-4 text-center text-zinc-50 sm:text-left">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs text-zinc-200 backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
             Platformë zyrtare e Xhamisë Mati 1
@@ -264,7 +264,7 @@ function Quotes() {
           </Link>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {QUOTES.slice(0, 9).map((q, idx) => (
             <MotionCard
               key={`${q.ref}-${idx}`}
