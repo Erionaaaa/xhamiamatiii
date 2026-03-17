@@ -64,6 +64,8 @@ const FALLBACK_TIMINGS: PrayerTimes["timings"] = {
   isha: "19:30",
 };
 
+const PROVIDER_TIMEOUT_MS = 4500;
+
 function pickTime(timings: Record<string, string>, key: string) {
   const v = timings[key] ?? timings[key.toLowerCase()] ?? "";
   return v.split(" ")[0] ?? v;
@@ -98,20 +100,52 @@ function normalizeHm(raw: string) {
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 
-async function fetchPrayerTimesFromBislame(): Promise<PrayerTimes | null> {
+async function fetchJsonWithTimeout(
+  input: string,
+  init: RequestInit,
+  timeoutMs = PROVIDER_TIMEOUT_MS,
+) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
   try {
-    const res = await fetch(
-      "https://bislame.com/wp-admin/admin-ajax.php?action=prayer_times",
-      {
-        next: { revalidate: 30 * 60 }, // cache for 30 min
-      },
-    );
+    const res = await fetch(input, {
+      ...init,
+      signal: controller.signal,
+    });
 
     if (!res.ok) {
       return null;
     }
 
-    const json = BislameResponseSchema.parse(await res.json());
+    return (await res.json()) as unknown;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function fetchPrayerTimesFromBislame(): Promise<PrayerTimes | null> {
+  try {
+    const raw = await fetchJsonWithTimeout(
+      "https://bislame.com/wp-admin/admin-ajax.php?action=prayer_times",
+      {
+        next: { revalidate: 30 * 60 }, // cache for 30 min
+      },
+      3500,
+    );
+
+    if (!raw) {
+      return null;
+    }
+
+    const parsed = BislameResponseSchema.safeParse(raw);
+    if (!parsed.success) {
+      return null;
+    }
+
+    const json = parsed.data;
     if (!json.success) {
       return null;
     }
@@ -144,15 +178,24 @@ async function fetchPrayerTimesFromAladhan(): Promise<PrayerTimes | null> {
     url.searchParams.set("method", PRISHTINA.method);
     url.searchParams.set("timezonestring", PRISHTINA.timezone);
 
-    const res = await fetch(url.toString(), {
-      next: { revalidate: 60 * 60 }, // cache for 1h
-    });
+    const raw = await fetchJsonWithTimeout(
+      url.toString(),
+      {
+        next: { revalidate: 60 * 60 }, // cache for 1h
+      },
+      4500,
+    );
 
-    if (!res.ok) {
+    if (!raw) {
       return null;
     }
 
-    const json = AladhanResponseSchema.parse(await res.json());
+    const parsed = AladhanResponseSchema.safeParse(raw);
+    if (!parsed.success) {
+      return null;
+    }
+
+    const json = parsed.data;
     const t = json.data.timings;
 
     return {
@@ -178,12 +221,15 @@ async function fetchPrayerTimesFromAladhan(): Promise<PrayerTimes | null> {
 }
 
 export async function getPrayerTimesForPrishtina(): Promise<PrayerTimes> {
-  const bik = await fetchPrayerTimesFromBislame();
+  const bikPromise = fetchPrayerTimesFromBislame();
+  const aladhanPromise = fetchPrayerTimesFromAladhan();
+
+  const bik = await bikPromise;
   if (bik) {
     return bik;
   }
 
-  const aladhan = await fetchPrayerTimesFromAladhan();
+  const aladhan = await aladhanPromise;
   if (aladhan) {
     return aladhan;
   }
