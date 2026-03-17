@@ -7,6 +7,15 @@ export const metadata = {
   title: "Xhamia — Xhamia Mati 1",
 };
 
+const GALLERY_IMAGES = [
+  { src: "/xhamia.jpg", alt: "Pamje ballore e xhamisë" },
+  { src: "/inside.jpg", alt: "Brendësia e xhamisë" },
+  { src: "/hero.png", alt: "Ambienti i jashtëm i xhamisë" },
+  { src: "/prayer.jpg", alt: "Momente gjatë namazit" },
+  { src: "/activities.jpg", alt: "Aktivitete dhe organizime" },
+  { src: "/academy.jpg", alt: "Programet edukative në xhami" },
+];
+
 export default async function MosquePage() {
   const info = await prisma.mosqueInfo.findFirst();
 
@@ -107,14 +116,14 @@ export default async function MosquePage() {
             <MotionCard className="overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
               <div className="relative h-60 w-full">
                 <Image
-                  src="/xhamia.jpg"
-                  alt={info?.name ?? "Xhamia Mati 1"}
+                  src="/inside.jpg"
+                  alt="Pamje nga brendësia e xhamisë"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-sm font-medium text-zinc-100">
-                  Pamje nga xhamia dhe rrethina.
+                  Pamje nga ambienti i brendshëm dhe qetësia e xhamisë.
                 </div>
               </div>
             </MotionCard>
@@ -122,14 +131,10 @@ export default async function MosquePage() {
 
           <div className="mt-10">
             <div className="text-sm font-semibold">Galeria</div>
-            <div className="mt-4 grid gap-4 md:grid-cols-3">
-              {[
-                { src: "/hero.png", alt: "Pamje nga oborri" },
-                { src: "/inside.jpg", alt: "Brenda xhamisë" },
-                { src: "/prayer.jpg", alt: "Momente nga namazi" },
-              ].map((img) => (
+            <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {GALLERY_IMAGES.map((img) => (
                 <MotionCard
-                  key={img.src}
+                  key={`${img.src}-${img.alt}`}
                   className="group relative h-56 overflow-hidden rounded-3xl border border-border/70 bg-muted shadow-sm"
                 >
                   <Image

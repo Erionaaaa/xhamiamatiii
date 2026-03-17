@@ -4,8 +4,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.mosqueInfo.deleteMany();
-  // Videot nuk fshihen më që të ruhen ato të shtuara nga admin.
-  await prisma.videoCategory.deleteMany();
+  // Mos i fshi kategoritë e videove: fshirja e tyre fshin edhe videot (Cascade).
   await prisma.academyPost.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.donationMethod.deleteMany();
@@ -45,40 +44,43 @@ async function main() {
       isActive: true,
     },
   });
-  // Video demonstruese (ndryshoji URL-t sipas dëshirës)
-  await prisma.video.createMany({
-    data: [
-      {
-        title: "Rëndësia e namazit në jetën e përditshme",
-        slug: "rendesia-e-namazit",
-        youtubeUrl: "https://www.youtube.com/watch?v=-vVMEinu9v4",
-        description:
-          "Ligjëratë motivuese rreth namazit dhe ndikimit të tij në moral dhe disiplinë.",
-        categoryId: ligjerata.id,
-        isFeatured: true,
-        isActive: true,
-      },
-      {
-        title: "Rinia dhe përgjegjësia në Islam",
-        slug: "rinia-dhe-pergjegjesia",
-        youtubeUrl: "https://www.youtube.com/watch?v=6nH0Vn_6P3U",
-        description:
-          "Mesazh i veçantë për të rinjtë: si ta shfrytëzojnë kohën dhe energjinë në mënyrë të dobishme.",
-        categoryId: ligjerata.id,
-        isFeatured: true,
-        isActive: true,
-      },
-      {
-        title: "Dashuria ndaj Kur’anit në familje",
-        slug: "dashuria-ndaj-kuranit-ne-familje",
-        youtubeUrl: "https://www.youtube.com/watch?v=WL6SZmkMBVE",
-        description:
-          "Si të krijojmë atmosferë familjare rreth leximit dhe kuptimit të Kur’anit.",
-        categoryId: ligjerata.id,
-        isActive: true,
-      },
-    ],
-  });
+  // Video demonstruese: shtohen vetëm në instalimin e parë (kur nuk ka video).
+  const hasAnyVideo = (await prisma.video.count()) > 0;
+  if (!hasAnyVideo) {
+    await prisma.video.createMany({
+      data: [
+        {
+          title: "Rëndësia e namazit në jetën e përditshme",
+          slug: "rendesia-e-namazit",
+          youtubeUrl: "https://www.youtube.com/watch?v=-vVMEinu9v4",
+          description:
+            "Ligjëratë motivuese rreth namazit dhe ndikimit të tij në moral dhe disiplinë.",
+          categoryId: ligjerata.id,
+          isFeatured: true,
+          isActive: true,
+        },
+        {
+          title: "Rinia dhe përgjegjësia në Islam",
+          slug: "rinia-dhe-pergjegjesia",
+          youtubeUrl: "https://www.youtube.com/watch?v=6nH0Vn_6P3U",
+          description:
+            "Mesazh i veçantë për të rinjtë: si ta shfrytëzojnë kohën dhe energjinë në mënyrë të dobishme.",
+          categoryId: ligjerata.id,
+          isFeatured: true,
+          isActive: true,
+        },
+        {
+          title: "Dashuria ndaj Kur’anit në familje",
+          slug: "dashuria-ndaj-kuranit-ne-familje",
+          youtubeUrl: "https://www.youtube.com/watch?v=WL6SZmkMBVE",
+          description:
+            "Si të krijojmë atmosferë familjare rreth leximit dhe kuptimit të Kur’anit.",
+          categoryId: ligjerata.id,
+          isActive: true,
+        },
+      ],
+    });
+  }
 
   await prisma.academyPost.createMany({
     data: [

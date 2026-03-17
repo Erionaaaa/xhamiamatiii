@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Container } from "@/components/site/Container";
 import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
-import { ContactForm } from "@/components/site/ContactForm";
 
 export const metadata = {
   title: "Kontakti — Xhamia Mati 1",

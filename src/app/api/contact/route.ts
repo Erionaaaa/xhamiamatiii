@@ -46,7 +46,7 @@ export async function POST(req: Request) {
   const adminPhone = info?.phone ?? process.env.CONTACT_PHONE ?? "-";
 
   const lines = [
-    "Mesazh i ri nga faqja — " + context,
+    "Mesazh i ri nga faqja - " + context,
     "=".repeat(44),
     "",
     "Emri:     " + name,
@@ -81,7 +81,7 @@ export async function POST(req: Request) {
   const transporter = createTransport();
 
   if (!transporter) {
-    console.log("[contact] DEMO – nuk ka SMTP:\n", lines);
+    console.log("[contact] DEMO - nuk ka SMTP:\n", lines);
     return NextResponse.json({ ok: true, demo: true });
   }
 

@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { isAdminLoggedInAsync } from "@/lib/admin-auth";
 import { Container } from "@/components/site/Container";
@@ -82,6 +83,7 @@ async function createVideo(formData: FormData) {
     },
   });
 
+  revalidatePath("/admin/video");
   redirect("/admin/video");
 }
 
@@ -131,6 +133,7 @@ async function updateVideo(formData: FormData) {
     },
   });
 
+  revalidatePath("/admin/video");
   redirect("/admin/video");
 }
 
@@ -147,6 +150,8 @@ async function deleteVideo(formData: FormData) {
   }
 
   await prisma.video.delete({ where: { id } });
+
+  revalidatePath("/admin/video");
   redirect("/admin/video");
 }
 

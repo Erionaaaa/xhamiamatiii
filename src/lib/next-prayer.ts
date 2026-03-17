@@ -1,7 +1,7 @@
 import type { PrayerTimes } from "@/lib/prayer-times";
 
 function parseGmtOffsetToMinutes(tzName: string) {
-  // Examples: "GMT+1", "GMT+01:00", "UTC+1"
+
   const m = /(GMT|UTC)([+-])(\d{1,2})(?::?(\d{2}))?/.exec(tzName);
   if (!m) return 0;
   const sign = m[2] === "-" ? -1 : 1;
@@ -11,7 +11,7 @@ function parseGmtOffsetToMinutes(tzName: string) {
 }
 
 function getTimeZoneOffsetMinutes(timeZone: string, date: Date) {
-  // Node/modern runtimes support "shortOffset" (e.g. "GMT+1")
+  
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone,
     timeZoneName: "shortOffset",
@@ -69,7 +69,7 @@ export function getNextPrayer(
     { key: "isha", label: "Jacia" },
   ];
 
-  // Current time in Kosovo zone as "wall clock" minutes since midnight
+  
   const nowZ = getNowPartsInZone(timeZone);
   const nowMinutes = nowZ.hour * 60 + nowZ.minute + nowZ.second / 60;
 

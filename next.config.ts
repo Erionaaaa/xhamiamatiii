@@ -2,8 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   turbopack: {
-    // Tell Turbopack that the project root is this folder,
-    // not the parent directory that also has a lockfile.
+
+    
     root: __dirname,
   },
   images: {
