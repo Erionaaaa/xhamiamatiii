@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/site/Container";
+import { ContactForm } from "@/components/site/ContactForm";
 import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
 
@@ -41,40 +42,9 @@ export default async function ContactPage() {
               <p className="mt-1 text-sm text-muted-foreground">
                 Plotëso formularin dhe do të të kontaktojmë sa më shpejt.
               </p>
-              <form className="mt-5 grid gap-3" method="POST" action="/api/contact">
-                <div className="grid gap-3 md:grid-cols-2">
-                  <input
-                    className="h-11 rounded-2xl border border-border/70 bg-background px-4 text-sm outline-none ring-0 transition focus:border-foreground/40"
-                    placeholder="Emri"
-                    name="name"
-                    required
-                  />
-                  <input
-                    className="h-11 rounded-2xl border border-border/70 bg-background px-4 text-sm outline-none ring-0 transition focus:border-foreground/40"
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    required
-                  />
-                </div>
-                <textarea
-                  className="min-h-[140px] rounded-2xl border border-border/70 bg-background px-4 py-3 text-sm outline-none ring-0 transition focus:border-foreground/40"
-                  placeholder="Mesazhi"
-                  name="message"
-                  required
-                />
-                <input type="hidden" name="context" value="kontakt" />
-                <button
-                  type="submit"
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-foreground px-5 text-sm font-semibold text-background transition hover:opacity-90"
-                >
-                  Dërgo mesazhin
-                </button>
-                <div className="text-xs text-muted-foreground">
-                  Mesazhi dërgohet në emailin e kontaktit (konfiguro `CONTACT_EMAIL`
-                  dhe SMTP kur të jeni gati).
-                </div>
-              </form>
+              <div className="mt-5">
+                <ContactForm recipientText="Mesazhi dërgohet te info@xhamia.com." />
+              </div>
             </MotionCard>
 
             <div className="grid gap-4">
@@ -121,21 +91,20 @@ export default async function ContactPage() {
               </MotionCard>
 
               <MotionCard className="overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
-                <div className="p-6">
+                <div className="border-b border-border/70 p-6">
                   <div className="text-sm font-semibold">Harta</div>
                   <div className="mt-2 text-sm text-muted-foreground">
                     Lokacioni i xhamisë në Google Maps.
                   </div>
                 </div>
-                <div className="aspect-[16/10] w-full border-t border-border/70 bg-muted">
-                  <iframe
-                    title="Harta"
-                    className="h-full w-full"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2923.3198032154885!2d21.1876407!3d42.656702699999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ed4bdf761f7%3A0x8ab5c87464643f47!2sXhamia%20Hoxh%C3%AB%20Shuajb%20Arnauti%20-%20Mati%201!5e0!3m2!1sen!2s!4v1710172800000"
-                  />
-                </div>
+                <iframe
+                  title="Harta"
+                  className="block h-[420px] w-full lg:h-[520px]"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://maps.google.com/maps?q=Xhamia%20Hoxh%C3%AB%20Shuajb%20Arnauti%20Mati%201%20Prishtin%C3%AB&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                />
               </MotionCard>
             </div>
           </div>

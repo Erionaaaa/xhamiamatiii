@@ -2,7 +2,29 @@
 
 import { useState } from "react";
 
-export function ContactForm() {
+type ContactFormProps = {
+  context?: string;
+  submitLabel?: string;
+  successTitle?: string;
+  successText?: string;
+  recipientText?: string;
+  namePlaceholder?: string;
+  emailPlaceholder?: string;
+  phonePlaceholder?: string;
+  messagePlaceholder?: string;
+};
+
+export function ContactForm({
+  context = "kontakt",
+  submitLabel = "Dërgo mesazhin",
+  successTitle = "Mesazhi u dërgua me sukses!",
+  successText = "Do t\u0027ju kontaktojmë sa më shpejt.",
+  recipientText,
+  namePlaceholder = "Emri *",
+  emailPlaceholder = "Email *",
+  phonePlaceholder = "Numri i telefonit (opsionale)",
+  messagePlaceholder = "Mesazhi *",
+}: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -40,10 +62,10 @@ export function ContactForm() {
       <div className="rounded-3xl border border-emerald-300/60 bg-emerald-50 p-8 text-center dark:bg-emerald-950/30">
         <div className="text-2xl">✅</div>
         <div className="mt-3 text-base font-semibold tracking-tight">
-          Mesazhi u dërgua me sukses!
+          {successTitle}
         </div>
         <p className="mt-2 text-sm text-muted-foreground">
-          Do t&apos;ju kontaktojmë sa më shpejt.
+          {successText}
         </p>
         <button
           type="button"
@@ -61,14 +83,14 @@ export function ContactForm() {
       <div className="grid gap-3 md:grid-cols-2">
         <input
           className="h-11 rounded-2xl border border-border/70 bg-background px-4 text-sm outline-none ring-0 transition focus:border-foreground/40"
-          placeholder="Emri *"
+          placeholder={namePlaceholder}
           name="name"
           required
           disabled={status === "loading"}
         />
         <input
           className="h-11 rounded-2xl border border-border/70 bg-background px-4 text-sm outline-none ring-0 transition focus:border-foreground/40"
-          placeholder="Email *"
+          placeholder={emailPlaceholder}
           name="email"
           type="email"
           required
@@ -77,19 +99,19 @@ export function ContactForm() {
       </div>
       <input
         className="h-11 rounded-2xl border border-border/70 bg-background px-4 text-sm outline-none ring-0 transition focus:border-foreground/40"
-        placeholder="Numri i telefonit (opsionale)"
+        placeholder={phonePlaceholder}
         name="phone"
         type="tel"
         disabled={status === "loading"}
       />
       <textarea
         className="min-h-[140px] rounded-2xl border border-border/70 bg-background px-4 py-3 text-sm outline-none ring-0 transition focus:border-foreground/40"
-        placeholder="Mesazhi *"
+        placeholder={messagePlaceholder}
         name="message"
         required
         disabled={status === "loading"}
       />
-      <input type="hidden" name="context" value="kontakt" />
+      <input type="hidden" name="context" value={context} />
 
       {status === "error" && (
         <div className="rounded-2xl border border-red-300/60 bg-red-50 px-4 py-3 text-xs text-red-600 dark:bg-red-950/30 dark:text-red-400">
@@ -102,8 +124,11 @@ export function ContactForm() {
         disabled={status === "loading"}
         className="inline-flex h-11 items-center justify-center rounded-full bg-foreground px-5 text-sm font-semibold text-background transition hover:opacity-90 disabled:opacity-60"
       >
-        {status === "loading" ? "Duke dërguar…" : "Dërgo mesazhin"}
+        {status === "loading" ? "Duke dërguar…" : submitLabel}
       </button>
+      {recipientText ? (
+        <div className="text-xs text-muted-foreground">{recipientText}</div>
+      ) : null}
     </form>
   );
 }

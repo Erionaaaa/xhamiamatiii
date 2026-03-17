@@ -9,7 +9,6 @@ const QUICK_LINKS = [
   { href: "/video", label: "Video" },
   { href: "/akademia", label: "Akademia" },
   { href: "/aktivitete", label: "Aktivitetet" },
-  { href: "/donacione", label: "Donacionet" },
 ];
 
 const ABOUT_LINKS = [

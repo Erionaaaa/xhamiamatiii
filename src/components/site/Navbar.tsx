@@ -13,7 +13,6 @@ const nav = [
   { href: "/ajete", label: "Ajete & Duate" },
   { href: "/akademia", label: "Akademia" },
   { href: "/aktivitete", label: "Aktivitete" },
-  { href: "/donacione", label: "Donacione" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
@@ -55,13 +54,6 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            href="/donacione"
-            className="hidden h-10 items-center justify-center rounded-full bg-foreground px-4 text-sm font-semibold text-background transition hover:opacity-90 sm:inline-flex"
-          >
-            Dhuro
-          </Link>
-
           <button
             type="button"
             aria-label="Hap menunë"
@@ -103,13 +95,6 @@ export function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/donacione"
-              onClick={() => setOpen(false)}
-              className="mt-1 inline-flex h-10 items-center justify-center rounded-full bg-foreground px-4 text-sm font-semibold text-background transition hover:opacity-90"
-            >
-              Dhuro
-            </Link>
           </Container>
         </div>
       ) : null}

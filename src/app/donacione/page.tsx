@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { Container } from "@/components/site/Container";
 import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
@@ -11,6 +12,8 @@ export const metadata = {
 };
 
 export default async function DonationsPage() {
+  notFound();
+
   const methods = await prisma.donationMethod.findMany({
     where: { isActive: true },
     orderBy: [{ order: "asc" }, { createdAt: "desc" }],

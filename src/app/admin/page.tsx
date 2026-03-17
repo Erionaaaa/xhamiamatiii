@@ -10,13 +10,12 @@ export default async function AdminDashboardPage() {
     redirect("/admin/login");
   }
 
-  const [mosque, videoCount, academyCount, activityCount, donationCount] =
+  const [mosque, videoCount, academyCount, activityCount] =
     await Promise.all([
       prisma.mosqueInfo.findFirst(),
       prisma.video.count(),
       prisma.academyPost.count(),
       prisma.activity.count(),
-      prisma.donationMethod.count(),
     ]);
 
   return (
@@ -43,19 +42,15 @@ export default async function AdminDashboardPage() {
             </form>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-4">
-            <StatCard label="Video" value={videoCount} href="/video" />
+          <div className="mt-8 grid gap-4 md:grid-cols-5">
+            <StatCard label="Video" value={videoCount} href="/admin/video" />
             <StatCard label="Akademia" value={academyCount} href="/akademia" />
             <StatCard
               label="Aktivitete"
               value={activityCount}
-              href="/aktivitete"
+              href="/admin/aktivitete"
             />
-            <StatCard
-              label="Mënyra donacioni"
-              value={donationCount}
-              href="/donacione"
-            />
+            <StatCard label="Info xhamie" value={1} href="/admin/mosque" />
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start">
@@ -109,8 +104,8 @@ export default async function AdminDashboardPage() {
               </div>
               <ul className="mt-3 list-disc space-y-1 pl-4">
                 <li>Ndrysho informacionin bazë të xhamisë.</li>
-                <li>Më vonë mund të shtohen seksione për video, Akademi, etj.</li>
-                <li>Rregullo tekstet pa pasur nevojë për ndërhyrje në kod.</li>
+                <li>Menaxho videot dhe aktivitetet nga paneli admin.</li>
+                <li>Ndrysho fotot e aktiviteteve pa ndërhyrje në kod.</li>
               </ul>
             </MotionCard>
           </div>

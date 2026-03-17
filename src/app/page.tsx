@@ -52,7 +52,6 @@ export default async function Home() {
         videos={latestVideos}
       />
       <Gallery />
-      <DonateCTA />
     </main>
   );
 }
@@ -91,13 +90,13 @@ function Hero({
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
             Platformë zyrtare e Xhamisë Mati 1
           </div>
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             {infoName ?? "Xhamia Mati 1"}
           </h1>
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-300">
             {infoCity ?? "Prishtinë"} • ORET E NAMAZIT
           </p>
-          <p className="max-w-xl text-sm leading-7 text-zinc-200">
+          <p className="max-w-xl text-sm font-semibold leading-7 text-zinc-200">
             {infoDescription ??
               "Orari i namazit në kohë reale, ligjërata, Akademia, aktivitetet dhe mundësitë për të ndihmuar xhaminë."}
           </p>
@@ -472,50 +471,3 @@ function Gallery() {
   );
 }
 
-function DonateCTA() {
-  return (
-    <MotionSection>
-      <Container className="py-12">
-        <MotionCard className="relative overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
-          <div className="absolute inset-0">
-            <Image
-              src="/donation.webp"
-              alt="Donacione"
-              fill
-              className="object-cover opacity-30"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
-          </div>
-          <div className="relative grid gap-6 p-8 md:grid-cols-[1.4fr_1fr] md:items-center">
-            <div>
-              <div className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                Donacione
-              </div>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight">
-                Mbështete Xhaminë Mati 1
-              </h2>
-              <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
-                Donacionet ndihmojnë në mirëmbajtje, programe edukative dhe
-                projekte humanitare. Mund ta zgjedhësh mënyrën që të përshtatet.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
-              <Link
-                href="/donacione"
-                className="inline-flex h-11 items-center justify-center rounded-full bg-foreground px-5 text-sm font-semibold text-background transition hover:opacity-90"
-              >
-                Shiko mënyrat e donacionit
-              </Link>
-              <Link
-                href="/kontakt"
-                className="inline-flex h-11 items-center justify-center rounded-full border border-border/70 bg-background px-5 text-sm font-semibold transition hover:bg-muted"
-              >
-                Kontakto
-              </Link>
-            </div>
-          </div>
-        </MotionCard>
-      </Container>
-    </MotionSection>
-  );
-}

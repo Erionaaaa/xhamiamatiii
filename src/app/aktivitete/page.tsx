@@ -8,6 +8,27 @@ export const metadata = {
   title: "Aktivitete — Xhamia Mati 1",
 };
 
+const DEFAULT_ACTIVITY_IMAGES = [
+  "/activities.jpg",
+  "/youth.jpg",
+  "/inside.jpg",
+  "/xhamia.jpg",
+  "/academy.jpg",
+];
+
+function resolveActivityImage(coverImage: string | null, seed: string) {
+  const normalized = (coverImage ?? "").trim();
+  if (normalized.startsWith("/")) {
+    return normalized;
+  }
+
+  let hash = 0;
+  for (let i = 0; i < seed.length; i += 1) {
+    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+  }
+  return DEFAULT_ACTIVITY_IMAGES[hash % DEFAULT_ACTIVITY_IMAGES.length];
+}
+
 function formatDate(value?: Date | null) {
   if (!value) return null;
   return new Intl.DateTimeFormat("sq-AL", {
@@ -117,6 +138,7 @@ export default async function ActivitiesPage() {
                             startsAt={a.startsAt}
                             endsAt={a.endsAt}
                             status={a.status}
+                            imageSrc={resolveActivityImage(a.coverImage, a.slug)}
                           />
                         ))}
                       </div>
@@ -145,6 +167,7 @@ export default async function ActivitiesPage() {
                             startsAt={a.startsAt}
                             endsAt={a.endsAt}
                             status={a.status}
+                            imageSrc={resolveActivityImage(a.coverImage, a.slug)}
                           />
                         ))}
                       </div>
@@ -205,6 +228,7 @@ function ActivityCard({
   startsAt,
   endsAt,
   status,
+  imageSrc,
 }: {
   slug: string;
   title: string;
@@ -212,13 +236,25 @@ function ActivityCard({
   startsAt: Date | null;
   endsAt: Date | null;
   status: "upcoming" | "ongoing" | "past";
+  imageSrc: string;
 }) {
   const from = formatDate(startsAt);
   const to = formatDate(endsAt);
 
   return (
-    <MotionCard className="rounded-3xl border border-border/70 bg-background p-6 shadow-sm transition hover:bg-muted">
+    <MotionCard className="overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm transition hover:bg-muted">
       <Link href={`/aktivitete/${slug}`} className="block">
+        <div className="relative h-40 w-full border-b border-border/70 bg-muted">
+          <Image
+            src={imageSrc}
+            alt={title}
+            fill
+            sizes="(min-width: 768px) 500px, 100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+        </div>
+        <div className="p-6">
         <div className="flex items-center justify-between gap-3">
           <span className="inline-flex rounded-full border border-border/70 bg-muted px-3 py-1 text-[11px] font-semibold text-muted-foreground">
             {statusLabel(status)}
@@ -239,6 +275,7 @@ function ActivityCard({
             Hap aktivitetin për më shumë detaje.
           </div>
         )}
+        </div>
       </Link>
     </MotionCard>
   );

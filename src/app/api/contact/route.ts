@@ -42,7 +42,11 @@ export async function POST(req: Request) {
   }
 
   const info = await prisma.mosqueInfo.findFirst();
-  const adminEmail = process.env.CONTACT_EMAIL ?? info?.email ?? "info@xhamia.com";
+  const contactEmail = process.env.CONTACT_EMAIL ?? info?.email ?? "info@xhamia.com";
+  const academyRegistrationEmail =
+    process.env.ACADEMY_REGISTRATION_EMAIL ?? "info@xhamia.com";
+  const adminEmail =
+    context === "regjistrim-akademi" ? academyRegistrationEmail : contactEmail;
   const adminPhone = info?.phone ?? process.env.CONTACT_PHONE ?? "-";
 
   const lines = [

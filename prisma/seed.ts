@@ -110,6 +110,7 @@ async function main() {
       {
         title: "Aksion humanitar për familjet në nevojë",
         slug: "aksion-humanitar-familjet-ne-nevoje",
+        coverImage: "/activities.jpg",
         summary:
           "Mbledhje ushqimore dhe higjienike për familjet me gjendje të rënduar ekonomike në lagjen Mati 1.",
         content:
@@ -119,6 +120,7 @@ async function main() {
       {
         title: "Mbrëmje rinore me temë: Identiteti islam",
         slug: "mbremje-rinore-identiteti-islam",
+        coverImage: "/youth.jpg",
         summary:
           "Takim i veçantë me të rinjtë, me ligjëratë, pyetje & përgjigje dhe shoqërim.",
         content:

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/site/Container";
+import { ContactForm } from "@/components/site/ContactForm";
 import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
 
@@ -178,35 +179,19 @@ export default async function AcademyPage() {
                 <div className="mt-2 text-sm leading-6 text-muted-foreground">
                   Na kontakto për informata rreth orareve, niveleve dhe kushteve.
                 </div>
-                <form className="mt-4 grid gap-3" method="POST" action="/api/contact">
-                  <input
-                    className="h-10 rounded-2xl border border-border/70 bg-background px-3 text-xs outline-none ring-0 transition focus:border-foreground/40"
-                    name="name"
-                    placeholder="Emri i nxënësit / pjesëmarrësit"
+                <div className="mt-4">
+                  <ContactForm
+                    context="regjistrim-akademi"
+                    submitLabel="Dërgo kërkesën për regjistrim"
+                    successTitle="Kërkesa për regjistrim u dërgua!"
+                    successText="Do t\u0027ju kontaktojmë sa më shpejt për hapat e radhës."
+                    recipientText="Kërkesa dërgohet te info@xhamia.com."
+                    namePlaceholder="Emri i nxënësit / pjesëmarrësit *"
+                    emailPlaceholder="Email i prindit ose kontaktit *"
+                    phonePlaceholder="Numri i telefonit (opsionale)"
+                    messagePlaceholder="Programi i interesuar (Fëmijë / Rini / Të rritur) dhe shënime shtesë *"
                   />
-                  <input
-                    className="h-10 rounded-2xl border border-border/70 bg-background px-3 text-xs outline-none ring-0 transition focus:border-foreground/40"
-                    name="email"
-                    type="email"
-                    placeholder="Email i prindit ose kontaktit"
-                  />
-                  <textarea
-                    className="min-h-[80px] rounded-2xl border border-border/70 bg-background px-3 py-2 text-xs outline-none ring-0 transition focus:border-foreground/40"
-                    name="message"
-                    placeholder="Programi i interesuar (p.sh. Fëmijë / Rini / Të rritur) dhe ndonjë shënim shtesë."
-                  />
-                  <input type="hidden" name="context" value="regjistrim-akademi" />
-                  <button
-                    type="submit"
-                    className="inline-flex h-10 items-center justify-center rounded-full bg-foreground px-4 text-xs font-semibold text-background transition hover:opacity-90"
-                  >
-                    Dërgo kërkesën për regjistrim
-                  </button>
-                  <div className="text-[11px] text-muted-foreground">
-                    Kërkesa dërgohet në emailin e kontaktit të xhamisë. Mund t’i
-                    ndryshosh adresën/numrin në `.env`.
-                  </div>
-                </form>
+                </div>
               </MotionCard>
             </aside>
           </div>
@@ -218,8 +203,8 @@ export default async function AcademyPage() {
                 <div className="rounded-2xl border border-border/70 bg-background p-4">
                   <div className="font-semibold">Si bëhet regjistrimi?</div>
                   <div className="mt-1 text-muted-foreground">
-                    Regjistrimi mund të bëhet përmes kontaktit të xhamisë. Në fazën
-                    tjetër mund ta shtojmë edhe regjistrimin online.
+                    Plotëso formularin e regjistrimit në këtë faqe dhe ekipi i
+                    akademisë të kontakton për konfirmim.
                   </div>
                 </div>
                 <div className="rounded-2xl border border-border/70 bg-background p-4">
