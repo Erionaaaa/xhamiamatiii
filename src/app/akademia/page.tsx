@@ -4,16 +4,20 @@ import { Container } from "@/components/site/Container";
 import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Akademia — Xhamia Mati 1",
 };
 
 export default async function AcademyPage() {
-  const posts = await prisma.academyPost.findMany({
-    where: { isActive: true },
-    orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
-    take: 30,
-  });
+  const posts = await prisma.academyPost
+    .findMany({
+      where: { isActive: true },
+      orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+      take: 30,
+    })
+    .catch(() => []);
 
   const featured = posts[0] ?? null;
   const restPosts = featured ? posts.slice(1) : posts;

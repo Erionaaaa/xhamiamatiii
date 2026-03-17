@@ -65,7 +65,6 @@ function fallbackPrayerTimes(): PrayerTimes {
 function normalizeTimeZone(tz?: string) {
   if (!tz) return PRISHTINA.timezone;
   try {
-    
     new Intl.DateTimeFormat("en-US", { timeZone: tz });
     return tz;
   } catch {
