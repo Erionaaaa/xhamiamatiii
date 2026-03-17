@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Container } from "./Container";
 
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "info@xhamia.com";
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "info@xhhami.com";
 const CONTACT_PHONE = process.env.CONTACT_PHONE ?? "043723623";
 
 const QUICK_LINKS = [
