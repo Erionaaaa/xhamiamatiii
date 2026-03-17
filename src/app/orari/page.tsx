@@ -64,6 +64,8 @@ export default async function PrayerTimesPage() {
       body: "Në uljen e fundit lexo ettehijatin, salavatet dhe lutjet, pastaj jep selam në të djathtë dhe në të majtë për ta mbyllur namazin.",
     },
   ] as const;
+  const beginnerPrayerPdfUrl =
+    "https://d1.islamhouse.com/data/sq/ih_articles/single/sq_Falja_e_namazit_per_fillestare.pdf";
 
   return (
     <main>
@@ -208,6 +210,20 @@ export default async function PrayerTimesPage() {
                 Për mësim praktik më të detajuar, lexim korrekt dhe dallimet që
                 mund të ketë sipas medhhebit, konsultohu me imam ose mësues të
                 besueshëm.
+              </div>
+
+              <div className="mt-4 rounded-3xl border border-border/70 bg-background px-5 py-4">
+                <p className="text-sm leading-7 text-muted-foreground">
+                  Material shtesë për fillestarë:
+                </p>
+                <a
+                  href={beginnerPrayerPdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center justify-center rounded-full border border-border/70 bg-background px-4 py-2 text-xs font-semibold text-foreground transition hover:bg-muted"
+                >
+                  Hap PDF: Falja e namazit për fillestarë
+                </a>
               </div>
             </div>
           </div>

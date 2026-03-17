@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "./Container";
 
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "info@xhhami.com";
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "info@xhamia.com";
 const CONTACT_PHONE = process.env.CONTACT_PHONE ?? "043723623";
 
 const QUICK_LINKS = [
@@ -27,24 +28,27 @@ export function Footer() {
       <Container className="py-12">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="space-y-4 lg:col-span-5">
-            <div className="inline-flex items-center rounded-full border border-border/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-              Qendra e xhematit
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Xhamia Mati 1</h3>
-              <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-                Platformë informative për xhematin: oraret e namazit, video,
-                Akademia, aktivitetet dhe donacionet në një vend.
-              </p>
-            </div>
-            <div className="grid gap-2 text-xs text-muted-foreground sm:grid-cols-2">
-              <div className="rounded-lg border border-border/70 bg-muted/40 px-3 py-2">
-                Përditësime javore
+            <Link href="/" className="inline-flex items-center gap-3">
+              <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-border/70 bg-background shadow-sm">
+                <Image
+                  src="/logo.png"
+                  alt="Logo Xhamia Mati 1"
+                  fill
+                  sizes="48px"
+                  className="object-contain p-1"
+                />
               </div>
-              <div className="rounded-lg border border-border/70 bg-muted/40 px-3 py-2">
-                Përmbajtje për komunitetin
+              <div>
+                <h3 className="text-lg font-semibold leading-tight">Xhamia Mati 1</h3>
+                <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                  Qendra e xhematit
+                </p>
               </div>
-            </div>
+            </Link>
+            <p className="max-w-md text-sm leading-6 text-muted-foreground">
+              Platformë informative për xhematin: oraret e namazit, video,
+              Akademia, aktivitetet dhe donacionet në një vend.
+            </p>
           </div>
 
           <nav className="space-y-3 lg:col-span-3" aria-label="Linqe të shpejta">
