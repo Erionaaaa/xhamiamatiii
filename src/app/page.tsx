@@ -190,7 +190,7 @@ function Sections() {
         <div className="grid gap-6 md:grid-cols-3">
           <Feature
             title="Orari i namazit (Prishtinë)"
-            desc="I përditësuar automatikisht nga shërbim publik."
+            desc="I përditësuar automatikisht nga BIK (bislame.com)."
             href="/orari"
             imageSrc="/prayer.jpg"
           />

@@ -1,5 +1,21 @@
 import { z } from "zod";
 
+const BislameResponseSchema = z.object({
+  success: z.boolean(),
+  data: z.object({
+    data: z.object({
+      Date: z.string().optional(),
+      data_e_formatuar: z.string().optional(),
+      Sabahu: z.string(),
+      Lindja: z.string(),
+      Dreka: z.string(),
+      Ikindia: z.string(),
+      Akshami: z.string(),
+      Jacia: z.string(),
+    }),
+  }),
+});
+
 const AladhanResponseSchema = z.object({
   data: z.object({
     timings: z.record(z.string(), z.string()),
@@ -72,7 +88,55 @@ function normalizeTimeZone(tz?: string) {
   }
 }
 
-export async function getPrayerTimesForPrishtina(): Promise<PrayerTimes> {
+function normalizeHm(raw: string) {
+  const [hRaw, mRaw] = raw.trim().split(":");
+  const h = parseInt(hRaw ?? "", 10);
+  const m = parseInt(mRaw ?? "", 10);
+  if (Number.isNaN(h) || Number.isNaN(m)) {
+    return raw.trim();
+  }
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+}
+
+async function fetchPrayerTimesFromBislame(): Promise<PrayerTimes | null> {
+  try {
+    const res = await fetch(
+      "https://bislame.com/wp-admin/admin-ajax.php?action=prayer_times",
+      {
+        next: { revalidate: 30 * 60 }, // cache for 30 min
+      },
+    );
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const json = BislameResponseSchema.parse(await res.json());
+    if (!json.success) {
+      return null;
+    }
+
+    const t = json.data.data;
+    return {
+      dateLabel: t.data_e_formatuar ?? t.Date ?? "Sot",
+      locationLabel: PRISHTINA.locationLabel,
+      timezone: PRISHTINA.timezone,
+      timings: {
+        fajr: normalizeHm(t.Sabahu),
+        sunrise: normalizeHm(t.Lindja),
+        dhuhr: normalizeHm(t.Dreka),
+        asr: normalizeHm(t.Ikindia),
+        maghrib: normalizeHm(t.Akshami),
+        isha: normalizeHm(t.Jacia),
+      },
+    };
+  } catch (error) {
+    console.warn("BIK prayer times request failed", error);
+    return null;
+  }
+}
+
+async function fetchPrayerTimesFromAladhan(): Promise<PrayerTimes | null> {
   try {
     const url = new URL("https://api.aladhan.com/v1/timings");
     url.searchParams.set("latitude", PRISHTINA.latitude);
@@ -85,11 +149,7 @@ export async function getPrayerTimesForPrishtina(): Promise<PrayerTimes> {
     });
 
     if (!res.ok) {
-      console.warn("Prayer times fetch failed; using fallback timings", {
-        status: res.status,
-        statusText: res.statusText,
-      });
-      return fallbackPrayerTimes();
+      return null;
     }
 
     const json = AladhanResponseSchema.parse(await res.json());
@@ -112,8 +172,23 @@ export async function getPrayerTimesForPrishtina(): Promise<PrayerTimes> {
       },
     };
   } catch (error) {
-    console.warn("Prayer times request failed; using fallback timings", error);
-    return fallbackPrayerTimes();
+    console.warn("Aladhan prayer times request failed", error);
+    return null;
   }
+}
+
+export async function getPrayerTimesForPrishtina(): Promise<PrayerTimes> {
+  const bik = await fetchPrayerTimesFromBislame();
+  if (bik) {
+    return bik;
+  }
+
+  const aladhan = await fetchPrayerTimesFromAladhan();
+  if (aladhan) {
+    return aladhan;
+  }
+
+  console.warn("Prayer times providers failed; using static fallback timings");
+  return fallbackPrayerTimes();
 }
 

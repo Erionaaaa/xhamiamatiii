@@ -109,7 +109,7 @@ export default async function PrayerTimesPage() {
                 </div>
 
                 <div className="mt-6 text-xs text-muted-foreground">
-                  Burimi: shërbim publik (Aladhan)
+                  Burimi: BIK (bislame.com), me rezervë Aladhan
                 </div>
               </div>
 
