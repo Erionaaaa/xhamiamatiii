@@ -34,7 +34,7 @@ export default async function ContactPage() {
             </div>
           </div>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-start">
+          <div className="mt-10 grid gap-8 lg:grid-cols-2">
             <MotionCard className="rounded-3xl border border-border/70 bg-background p-6 shadow-sm">
               <div className="text-base font-semibold tracking-tight">
                 Na dërgo mesazh
@@ -89,25 +89,25 @@ export default async function ContactPage() {
                   ) : null}
                 </div>
               </MotionCard>
-
-              <MotionCard className="overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
-                <div className="border-b border-border/70 p-6">
-                  <div className="text-sm font-semibold">Harta</div>
-                  <div className="mt-2 text-sm text-muted-foreground">
-                    Lokacioni i xhamisë në Google Maps.
-                  </div>
-                </div>
-                <iframe
-                  title="Harta"
-                  className="block h-[420px] w-full lg:h-[520px]"
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src="https://maps.google.com/maps?q=Xhamia%20Hoxh%C3%AB%20Shuajb%20Arnauti%20Mati%201%20Prishtin%C3%AB&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                />
-              </MotionCard>
             </div>
           </div>
+
+          <MotionCard className="mt-10 overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
+            <div className="border-b border-border/70 p-6">
+              <div className="text-sm font-semibold">Harta</div>
+              <div className="mt-2 text-sm text-muted-foreground">
+                Lokacioni i xhamisë në Google Maps.
+              </div>
+            </div>
+            <iframe
+              title="Harta"
+              className="block h-[420px] w-full lg:h-[520px]"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=Xhamia%20Hoxh%C3%AB%20Shuajb%20Arnauti%20Mati%201%20Prishtin%C3%AB&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            />
+          </MotionCard>
         </Container>
       </MotionSection>
     </main>
