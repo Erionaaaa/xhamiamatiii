@@ -108,23 +108,63 @@ async function main() {
   await prisma.activity.createMany({
     data: [
       {
-        title: "Aksion humanitar për familjet në nevojë",
-        slug: "aksion-humanitar-familjet-ne-nevoje",
+        title: "Aksion humanitar: pako ushqimore për familjet në nevojë",
+        slug: "aksion-humanitar-pako-ushqimore",
         coverImage: "/activities.jpg",
         summary:
-          "Mbledhje ushqimore dhe higjienike për familjet me gjendje të rënduar ekonomike në lagjen Mati 1.",
+          "Grumbullim dhe shpërndarje e pakove ushqimore e higjienike për familjet me vështirësi ekonomike në Prishtinë.",
         content:
-          "Përshkrim demonstrues i një aksioni humanitar. Këtu mund të shkruhen kriteret, mënyra e shpërndarjes dhe raportimi pas aksionit.",
+          "Aksioni zhvillohet në bashkëpunim me vullnetarët e xhamisë dhe donatorët lokalë. Pranohen donacione në ushqime bazike dhe produkte higjienike. Shpërndarja bëhet me listë të verifikuar për familjet në nevojë.",
+        startsAt: new Date("2026-03-23T16:30:00+01:00"),
+        endsAt: new Date("2026-03-23T19:30:00+01:00"),
         isActive: true,
       },
       {
-        title: "Mbrëmje rinore me temë: Identiteti islam",
-        slug: "mbremje-rinore-identiteti-islam",
+        title: "Mbrëmje rinore: pyetje & përgjigje pas jacisë",
+        slug: "mbremje-rinore-pyetje-pergjigje-jacise",
         coverImage: "/youth.jpg",
         summary:
-          "Takim i veçantë me të rinjtë, me ligjëratë, pyetje & përgjigje dhe shoqërim.",
+          "Takim i hapur me të rinjtë me diskutim praktik mbi sfidat e përditshme, shkollën dhe rrjetet sociale.",
         content:
-          "Tekst demonstrues për një aktivitet rinor. Mund të specifikohen data, mysafirët, programi i mbrëmjes dhe fotot shoqëruese.",
+          "Programi nis pas namazit të jacisë me një ligjëratë të shkurtër, pastaj vazhdon me pyetje anonime dhe diskutim të lirë. Aktiviteti synon afrim, mbështetje dhe këshillim për të rinjtë e lagjes.",
+        startsAt: new Date("2026-03-27T20:15:00+01:00"),
+        endsAt: new Date("2026-03-27T21:45:00+01:00"),
+        isActive: true,
+      },
+      {
+        title: "Ligjëratë mujore për prindërit dhe familjen",
+        slug: "ligjerate-mujore-prinderit-dhe-familja",
+        coverImage: "/inside.jpg",
+        summary:
+          "Ligjëratë me fokus komunikimin në familje, edukimin e fëmijëve dhe ruajtjen e harmonisë në shtëpi.",
+        content:
+          "Ligjërata mbahet nga imamët e xhamisë dhe mysafirë të ftuar. Pas ligjëratës zhvillohet sesion i shkurtër pyetje-përgjigje me tema praktike për prindërit.",
+        startsAt: new Date("2026-04-04T19:00:00+02:00"),
+        endsAt: new Date("2026-04-04T20:30:00+02:00"),
+        isActive: true,
+      },
+      {
+        title: "Kurs bazik: lexim i Kur’anit për fillestarë",
+        slug: "kurs-bazik-lexim-kuranit-fillestare",
+        coverImage: "/academy.jpg",
+        summary:
+          "Terminë javore për fillestarë me mësim të shkronjave arabe, shqiptim bazik dhe ushtrime praktike.",
+        content:
+          "Kursi është i hapur për të gjitha moshat. Oraret organizohen në grupe të vogla për të siguruar përkushtim individual dhe përparim gradual.",
+        startsAt: new Date("2026-04-06T18:00:00+02:00"),
+        endsAt: new Date("2026-04-06T19:15:00+02:00"),
+        isActive: true,
+      },
+      {
+        title: "Vizitë solidariteti për të moshuarit e lagjes",
+        slug: "vizite-solidariteti-te-moshuarit",
+        coverImage: "/xhamia.jpg",
+        summary:
+          "Vizita periodike me ndihmë praktike dhe mbështetje morale për të moshuarit që jetojnë vetëm.",
+        content:
+          "Vullnetarët koordinojnë vizitat në grupe të vogla, duke sjellë pako bazike dhe duke ndihmuar në nevoja të përditshme. Qëllimi është afrimi i komunitetit dhe kujdesi për të moshuarit.",
+        startsAt: new Date("2026-04-10T11:00:00+02:00"),
+        endsAt: new Date("2026-04-10T13:00:00+02:00"),
         isActive: true,
       },
     ],

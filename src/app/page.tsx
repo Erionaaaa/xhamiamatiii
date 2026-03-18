@@ -175,10 +175,10 @@ function PrayerCard({
     <MotionCard className="relative overflow-hidden rounded-3xl border border-white/12 bg-black/18 p-4 text-zinc-50 shadow-[0_16px_48px_rgba(0,0,0,0.32)] backdrop-blur-[1px] sm:backdrop-blur-[2px]">
       <div className={`pointer-events-none absolute inset-x-6 top-0 h-1 rounded-b-full bg-gradient-to-r ${accent}`} />
       <div className="flex items-center justify-between sm:flex-col sm:items-start gap-2">
-        <div className="text-sm font-bold uppercase tracking-[0.18em] text-zinc-300 sm:text-[11px] sm:font-medium">
+        <div className="text-sm font-bold uppercase tracking-[0.18em] text-white sm:text-[11px] sm:font-medium">
           {label}
         </div>
-        <div className="text-2xl font-semibold tracking-tight">{time}</div>
+        <div className="text-2xl font-semibold tracking-tight text-white">{time}</div>
       </div>
     </MotionCard>
   );

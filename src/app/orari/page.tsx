@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/site/Container";
 import { getPrayerTimesForPrishtina } from "@/lib/prayer-times";
 import { MotionSection, MotionCard } from "@/components/site/motion";
@@ -36,6 +37,17 @@ export default async function PrayerTimesPage() {
     { key: "maghrib", label: "Akshami (Maghrib)", value: data.timings.maghrib },
     { key: "isha", label: "Jacia (Isha)", value: data.timings.isha },
   ] as const;
+  const prayerTutorialVideos = [
+    {
+      id: "yt-specific-prayer-guide",
+      title: "Si të falemi namazin - video udhëzuese",
+      description:
+        "Video e rekomanduar për mësimin praktik të namazit hap pas hapi.",
+      embedUrl: "https://www.youtube-nocookie.com/embed/gvRcklfqO0c",
+      watchUrl: "https://www.youtube.com/watch?v=gvRcklfqO0c",
+    },
+  ] as const;
+  const primaryTutorialVideo = prayerTutorialVideos[0] ?? null;
   const prayerGuideSteps = [
     {
       title: "Përgatitja",
@@ -226,6 +238,76 @@ export default async function PrayerTimesPage() {
                 >
                   Hap PDF: Falja e namazit për fillestarë
                 </a>
+              </div>
+
+              <div className="mt-8 rounded-3xl border border-border/70 bg-[linear-gradient(160deg,rgba(16,185,129,0.10),rgba(59,130,246,0.08)_38%,rgba(245,158,11,0.08)_72%,rgba(255,255,255,0.01))] p-5 sm:p-6">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div className="max-w-2xl">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/85 px-3 py-1 text-xs font-semibold text-muted-foreground backdrop-blur-sm">
+                      <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                      Video udhëzuese
+                    </div>
+                    <h3 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
+                      Mëso praktikisht me video
+                    </h3>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground sm:text-base">
+                      Përveç hapave me tekst, mund t’i ndjekësh videot e publikuara
+                      për mësim më të qartë dhe më vizual.
+                    </p>
+                  </div>
+                  <Link
+                    href="/video"
+                    className="inline-flex h-10 items-center justify-center rounded-full border border-border/70 bg-background px-4 text-xs font-semibold text-foreground transition hover:bg-muted"
+                  >
+                    Shiko të gjitha videot
+                  </Link>
+                </div>
+
+                <div className="mt-6">
+                  {primaryTutorialVideo ? (
+                    <MotionCard className="overflow-hidden rounded-3xl border border-border/70 bg-background/90 shadow-sm">
+                      <div className="grid lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
+                        <div className="border-b border-border/70 lg:border-b-0 lg:border-r">
+                          <iframe
+                            className="aspect-video w-full lg:min-h-[420px]"
+                            src={primaryTutorialVideo.embedUrl}
+                            title={primaryTutorialVideo.title}
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                          />
+                        </div>
+
+                        <div className="flex flex-col justify-between gap-4 p-5 sm:p-6">
+                          <div>
+                            <h4 className="text-base font-semibold tracking-tight sm:text-lg">
+                              {primaryTutorialVideo.title}
+                            </h4>
+                            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                              {primaryTutorialVideo.description ??
+                                "Përmbajtje edukative nga seksioni i videove të xhamisë."}
+                            </p>
+                          </div>
+
+                          <a
+                            href={primaryTutorialVideo.watchUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex h-10 items-center justify-center rounded-full border border-border/70 bg-background px-4 text-xs font-semibold text-foreground transition hover:bg-muted"
+                          >
+                            Hap videon në YouTube
+                          </a>
+                        </div>
+                      </div>
+                    </MotionCard>
+                  ) : (
+                    <div className="rounded-3xl border border-border/70 bg-background/85 p-6 text-sm text-muted-foreground">
+                      Për momentin nuk ka video aktive për shfaqje këtu. Mund t’i
+                      shikosh materialet sapo të publikohen te seksioni i videove.
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
