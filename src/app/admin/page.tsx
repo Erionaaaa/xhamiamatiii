@@ -44,7 +44,7 @@ export default async function AdminDashboardPage() {
 
           <div className="mt-8 grid gap-4 md:grid-cols-5">
             <StatCard label="Video" value={videoCount} href="/admin/video" />
-            <StatCard label="Akademia" value={academyCount} href="/akademia" />
+            <StatCard label="Akademia" value={academyCount} href="/admin/akademia" />
             <StatCard
               label="Aktivitete"
               value={activityCount}
@@ -104,7 +104,7 @@ export default async function AdminDashboardPage() {
               </div>
               <ul className="mt-3 list-disc space-y-1 pl-4">
                 <li>Ndrysho informacionin bazë të xhamisë.</li>
-                <li>Menaxho videot dhe aktivitetet nga paneli admin.</li>
+                <li>Menaxho videot, Akademinë dhe aktivitetet nga paneli admin.</li>
                 <li>Ndrysho fotot e aktiviteteve pa ndërhyrje në kod.</li>
               </ul>
             </MotionCard>

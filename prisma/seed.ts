@@ -14,6 +14,9 @@ async function main() {
       name: "Xhamia Mati 1",
       city: "Prishtinë",
       address: "Prishtinë, Kosovë",
+      facebookUrl: "https://www.facebook.com/xhamiamati1",
+      instagramUrl: "https://www.instagram.com/xhamiamati1/",
+      youtubeUrl: "https://www.youtube.com/@xhamiamati1",
       description:
         "Mirë se vini në faqen zyrtare të Xhamisë Mati 1. Këtu gjeni informacion, oraret e namazit, video sipas tematikave, Akademinë, aktivitetet dhe mënyrat e donacionit.",
     },
@@ -92,6 +95,7 @@ async function main() {
         content:
           "Ky është një tekst demonstrues për përmbajtjen e Akademisë. Këtu mund të shpjegohet struktura e niveleve, orari, kushtet e regjistrimit dhe metoda e punës me fëmijët.\n\nMë vonë mund ta zëvendësosh me tekstin real, pa pasur nevojë të ndryshosh kodin.",
         isActive: true,
+        coverImage: "/academy.jpg",
       },
       {
         title: "Kurs për lexim të Kur’anit për të rritur",
@@ -101,6 +105,47 @@ async function main() {
         content:
           "Shembull për një artikull tjetër të Akademisë. Mund të shtohen detaje për mësuesit, kohëzgjatjen e kursit, materialet e përdorura, etj.",
         isActive: true,
+        coverImage: "/inside.jpg",
+      },
+      {
+        title: "Grupi i rinisë: tematika javore dhe diskutime praktike",
+        slug: "grupi-i-rinise-tematika-javore",
+        excerpt:
+          "Takime javore me të rinjtë rreth identitetit, disiplinës personale, rrjeteve sociale dhe jetës studentore.",
+        content:
+          "Grupi i rinisë zhvillon takime të rregullta me ligjërata të shkurtra, pyetje-përgjigje dhe diskutime të hapura. Theksi vihet te ndërtimi i vetëdijes islame, përgjegjësisë personale dhe afrimit me xhaminë.\n\nTakimet synojnë të krijojnë një ambient ku të rinjtë mund të pyesin lirshëm dhe të marrin udhëzim praktik për sfidat që hasin çdo ditë.",
+        isActive: true,
+        coverImage: "/youth.jpg",
+      },
+      {
+        title: "Mësimi i sureve të shkurtra për fillestarë",
+        slug: "mesimi-i-sureve-te-shkurtra",
+        excerpt:
+          "Program i thjeshtë për memorizimin dhe shqiptimin korrekt të sureve dhe duave bazike të namazit.",
+        content:
+          "Ky program është i përshtatshëm për fëmijë, fillestarë dhe çdo person që dëshiron të përforcojë bazat. Mësimi zhvillohet me përsëritje, korrigjim të shqiptimit dhe shpjegim të kuptimit të sureve kryesore.\n\nQëllimi është që pjesëmarrësi të ndihet i sigurt në leximin e pjesëve bazike që i nevojiten në namaz dhe në jetën e përditshme.",
+        isActive: true,
+        coverImage: "/academy.jpg",
+      },
+      {
+        title: "Ligjërata për prindër: edukimi fetar në familje",
+        slug: "ligjerata-per-prinder-edukimi-fetar-ne-familje",
+        excerpt:
+          "Temë mujore për rolin e prindit në edukimin e fëmijëve me adab, namaz dhe lidhje me Kur’anin.",
+        content:
+          "Ligjëratat mujore për prindërit trajtojnë komunikimin në familje, krijimin e rutinës së namazit, edukimin me shembull dhe mënyrat praktike për afrimin e fëmijëve me fenë.\n\nPërveç pjesës ligjëruese, zakonisht lihet edhe kohë për pyetje konkrete nga prindërit dhe për këshilla praktike sipas moshës së fëmijëve.",
+        isActive: true,
+        coverImage: "/inside.jpg",
+      },
+      {
+        title: "Abdesi dhe namazi: kurs praktik për fillestarë",
+        slug: "abdesi-dhe-namazi-kurs-praktik",
+        excerpt:
+          "Udhëzim hap pas hapi për abdesin, hyrjen në namaz dhe korrigjimin e gabimeve më të shpeshta.",
+        content:
+          "Ky kurs praktik është menduar për fillestarë dhe për ata që duan të rifreskojnë njohuritë bazike. Gjatë orës shpjegohen rregullat e abdesit, shtyllat e namazit, veprimet kryesore dhe gabimet që duhen shmangur.\n\nMësimi zhvillohet me demonstrim të qartë dhe me mundësi për pyetje individuale pas përfundimit të sesionit.",
+        isActive: true,
+        coverImage: "/prayer.jpg",
       },
     ],
   });

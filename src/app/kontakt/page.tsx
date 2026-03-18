@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/site/Container";
 import { ContactForm } from "@/components/site/ContactForm";
+import { SocialIcon } from "@/components/site/SocialIcon";
 import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
 
@@ -8,8 +9,43 @@ export const metadata = {
   title: "Kontakti — Xhamia Mati 1",
 };
 
+const DEFAULT_FACEBOOK_URL = "https://www.facebook.com/xhamiamati1";
+const DEFAULT_INSTAGRAM_URL = "https://www.instagram.com/xhamiamati1/";
+const DEFAULT_YOUTUBE_URL = "https://www.youtube.com/@xhamiamati1";
+const DEFAULT_TIKTOK_URL = "https://www.tiktok.com/@xhamiamati1";
+
 export default async function ContactPage() {
   const info = await prisma.mosqueInfo.findFirst();
+  const facebookUrl = info?.facebookUrl || DEFAULT_FACEBOOK_URL;
+  const instagramUrl = info?.instagramUrl || DEFAULT_INSTAGRAM_URL;
+  const youtubeUrl = info?.youtubeUrl || DEFAULT_YOUTUBE_URL;
+  const tiktokUrl = DEFAULT_TIKTOK_URL;
+  const socialLinks = [
+    {
+      href: facebookUrl,
+      label: "Facebook",
+      platform: "facebook",
+      iconClass: "bg-[#1877F2]/15 text-[#1877F2]",
+    },
+    {
+      href: instagramUrl,
+      label: "Instagram",
+      platform: "instagram",
+      iconClass: "bg-[#E4405F]/15 text-[#E4405F]",
+    },
+    {
+      href: youtubeUrl,
+      label: "YouTube",
+      platform: "youtube",
+      iconClass: "bg-[#FF0000]/15 text-[#FF0000]",
+    },
+    {
+      href: tiktokUrl,
+      label: "TikTok",
+      platform: "tiktok",
+      iconClass: "bg-foreground/10 text-foreground",
+    },
+  ] as const;
 
   return (
     <main>
@@ -43,7 +79,7 @@ export default async function ContactPage() {
                 Plotëso formularin dhe do të të kontaktojmë sa më shpejt.
               </p>
               <div className="mt-5">
-                <ContactForm recipientText="Mesazhi dërgohet te info@xhamia.com." />
+                <ContactForm />
               </div>
             </MotionCard>
 
@@ -69,24 +105,22 @@ export default async function ContactPage() {
               <MotionCard className="rounded-3xl border border-border/70 bg-background p-6 shadow-sm">
                 <div className="text-sm font-semibold">Rrjetet sociale</div>
                 <div className="mt-3 grid gap-2 text-sm">
-                  {info?.facebookUrl ? (
-                    <a className="underline underline-offset-2" href={info.facebookUrl} target="_blank" rel="noreferrer">
-                      Facebook
+                  {socialLinks.map((item) => (
+                    <a
+                      key={item.label}
+                      className="inline-flex items-center gap-2 rounded-xl border border-border/70 px-3 py-2 transition hover:bg-muted"
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span
+                        className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${item.iconClass}`}
+                      >
+                        <SocialIcon platform={item.platform} className="h-3.5 w-3.5" />
+                      </span>
+                      <span className="font-medium">{item.label}</span>
                     </a>
-                  ) : null}
-                  {info?.youtubeUrl ? (
-                    <a className="underline underline-offset-2" href={info.youtubeUrl} target="_blank" rel="noreferrer">
-                      YouTube
-                    </a>
-                  ) : null}
-                  {info?.instagramUrl ? (
-                    <a className="underline underline-offset-2" href={info.instagramUrl} target="_blank" rel="noreferrer">
-                      Instagram
-                    </a>
-                  ) : null}
-                  {!info?.facebookUrl && !info?.youtubeUrl && !info?.instagramUrl ? (
-                    <div className="text-muted-foreground">—</div>
-                  ) : null}
+                  ))}
                 </div>
               </MotionCard>
             </div>

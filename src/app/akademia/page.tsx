@@ -11,6 +11,34 @@ export const metadata = {
   title: "Akademia — Xhamia Mati 1",
 };
 
+const ACADEMY_TRACKS = [
+  {
+    title: "Mësim i Kur’anit",
+    text: "Nga shkronjat arabe dhe lexim bazik, deri te përmirësimi i texhvidit dhe ushtrimi praktik.",
+  },
+  {
+    title: "Ahlak & edukim",
+    text: "Tematika mbi sjelljen, respektin, disiplinën, raportin me prindërit dhe jetën e përditshme.",
+  },
+  {
+    title: "Fik’h praktik",
+    text: "Abdesi, namazi, agjërimi dhe pyetje praktike që lidhen me ibadetet e përditshme.",
+  },
+] as const;
+
+const WEEKLY_SCHEDULE = [
+  { day: "E hënë", slot: "18:00 - 19:15", program: "Kurs bazik i Kur’anit për fillestarë" },
+  { day: "E mërkurë", slot: "18:00 - 19:15", program: "Mësim për fëmijë dhe ushtrime praktike" },
+  { day: "E premte", slot: "Pas jacisë", program: "Ligjëratë e shkurtër dhe pyetje-përgjigje" },
+  { day: "E shtunë", slot: "11:00 - 12:30", program: "Grupi i rinisë dhe tema edukative" },
+] as const;
+
+const LEARNING_POINTS = [
+  "Lexim korrekt i sureve të shkurtra dhe duave bazike.",
+  "Rregullat praktike të abdesit, namazit dhe sjelljes në xhami.",
+  "Mjedis i qetë për pyetje, përsëritje dhe përparim gradual.",
+] as const;
+
 export default async function AcademyPage() {
   const posts = await prisma.academyPost
     .findMany({
@@ -62,8 +90,56 @@ export default async function AcademyPage() {
             </div>
           </div>
 
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            {ACADEMY_TRACKS.map((item) => (
+              <MotionCard
+                key={item.title}
+                className="rounded-3xl border border-border/70 bg-background p-5 shadow-sm"
+              >
+                <div className="text-base font-semibold tracking-tight">{item.title}</div>
+                <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.text}</p>
+              </MotionCard>
+            ))}
+          </div>
+
           <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start">
             <div>
+              <MotionCard className="mb-5 rounded-3xl border border-border/70 bg-[linear-gradient(145deg,rgba(16,185,129,0.09),rgba(59,130,246,0.06),rgba(255,255,255,0.01))] p-5 shadow-sm sm:p-6">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div className="max-w-2xl">
+                    <div className="inline-flex items-center rounded-full border border-border/70 bg-background/85 px-3 py-1 text-xs font-semibold text-muted-foreground">
+                      Program orientues
+                    </div>
+                    <h2 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
+                      Çfarë përfshin Akademia
+                    </h2>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                      Akademia është menduar si një rrugëtim gradual për fëmijë,
+                      rini dhe të rritur, me mësim të rregullt, përsëritje dhe
+                      orientim praktik në tema fetare dhe edukative.
+                    </p>
+                  </div>
+
+                  <Link
+                    href="/kontakt"
+                    className="inline-flex h-10 items-center justify-center rounded-full border border-border/70 bg-background px-4 text-xs font-semibold text-foreground transition hover:bg-muted"
+                  >
+                    Pyet për regjistrim
+                  </Link>
+                </div>
+
+                <div className="mt-5 grid gap-3 md:grid-cols-3">
+                  {LEARNING_POINTS.map((point) => (
+                    <div
+                      key={point}
+                      className="rounded-2xl border border-border/70 bg-background/80 p-4 text-sm leading-7 text-muted-foreground"
+                    >
+                      {point}
+                    </div>
+                  ))}
+                </div>
+              </MotionCard>
+
               {posts.length === 0 ? (
                 <div className="rounded-3xl border border-border/70 bg-background p-6 text-sm text-muted-foreground shadow-sm">
                   Ende nuk ka postime. (Këtu do shtohen gradualisht.)
@@ -138,9 +214,58 @@ export default async function AcademyPage() {
                   </div>
                 </div>
               )}
+
+              <MotionCard className="mt-6 rounded-3xl border border-border/70 bg-background p-6 shadow-sm">
+                <div className="text-sm font-semibold">Pyetje të shpeshta (FAQ)</div>
+                <div className="mt-4 grid gap-4 text-sm">
+                  <div className="rounded-2xl border border-border/70 bg-background p-4">
+                    <div className="font-semibold">Si bëhet regjistrimi?</div>
+                    <div className="mt-1 text-muted-foreground">
+                      Plotëso formularin e regjistrimit në këtë faqe dhe ekipi i
+                      akademisë të kontakton për konfirmim.
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-border/70 bg-background p-4">
+                    <div className="font-semibold">A ka grupe sipas moshës?</div>
+                    <div className="mt-1 text-muted-foreground">
+                      Po. Fëmijët, rinia dhe të rriturit mund të ndahen në grupe
+                      sipas nivelit dhe moshës.
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-border/70 bg-background p-4">
+                    <div className="font-semibold">Çfarë tematika trajtohen?</div>
+                    <div className="mt-1 text-muted-foreground">
+                      Kur’an, akide, ahlak, fik’h praktik dhe tema edukative për
+                      jetën e përditshme.
+                    </div>
+                  </div>
+                </div>
+              </MotionCard>
             </div>
 
             <aside className="grid gap-4 lg:sticky lg:top-6">
+              <MotionCard className="rounded-3xl border border-border/70 bg-background p-5 shadow-sm">
+                <div className="text-sm font-semibold">Orari orientues javor</div>
+                <div className="mt-4 grid gap-3">
+                  {WEEKLY_SCHEDULE.map((item) => (
+                    <div
+                      key={`${item.day}-${item.slot}`}
+                      className="rounded-2xl border border-border/70 bg-background p-4"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="font-semibold">{item.day}</div>
+                        <div className="text-xs font-semibold text-muted-foreground">
+                          {item.slot}
+                        </div>
+                      </div>
+                      <div className="mt-1 text-sm text-muted-foreground">
+                        {item.program}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </MotionCard>
+
               <MotionCard className="overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
                 <div className="relative h-56 w-full">
                   <Image
@@ -185,7 +310,6 @@ export default async function AcademyPage() {
                     submitLabel="Dërgo kërkesën për regjistrim"
                     successTitle="Kërkesa për regjistrim u dërgua!"
                     successText="Do t\u0027ju kontaktojmë sa më shpejt për hapat e radhës."
-                    recipientText="Kërkesa dërgohet te info@xhamia.com."
                     namePlaceholder="Emri i nxënësit / pjesëmarrësit *"
                     emailPlaceholder="Email i prindit ose kontaktit *"
                     phonePlaceholder="Numri i telefonit (opsionale)"
@@ -194,35 +318,6 @@ export default async function AcademyPage() {
                 </div>
               </MotionCard>
             </aside>
-          </div>
-
-          <div className="mt-10">
-            <MotionCard className="rounded-3xl border border-border/70 bg-background p-6 shadow-sm">
-              <div className="text-sm font-semibold">Pyetje të shpeshta (FAQ)</div>
-              <div className="mt-4 grid gap-4 text-sm">
-                <div className="rounded-2xl border border-border/70 bg-background p-4">
-                  <div className="font-semibold">Si bëhet regjistrimi?</div>
-                  <div className="mt-1 text-muted-foreground">
-                    Plotëso formularin e regjistrimit në këtë faqe dhe ekipi i
-                    akademisë të kontakton për konfirmim.
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-border/70 bg-background p-4">
-                  <div className="font-semibold">A ka grupe sipas moshës?</div>
-                  <div className="mt-1 text-muted-foreground">
-                    Po. Fëmijët, rinia dhe të rriturit mund të ndahen në grupe
-                    sipas nivelit dhe moshës.
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-border/70 bg-background p-4">
-                  <div className="font-semibold">Çfarë tematika trajtohen?</div>
-                  <div className="mt-1 text-muted-foreground">
-                    Kur’an, akide, ahlak, fik’h praktik dhe tema edukative për
-                    jetën e përditshme.
-                  </div>
-                </div>
-              </div>
-            </MotionCard>
           </div>
         </Container>
       </MotionSection>

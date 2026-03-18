@@ -16,17 +16,40 @@ async function updateMosque(formData: FormData) {
   const address = String(formData.get("address") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
+  const facebookUrl = String(formData.get("facebookUrl") ?? "").trim();
+  const instagramUrl = String(formData.get("instagramUrl") ?? "").trim();
+  const youtubeUrl = String(formData.get("youtubeUrl") ?? "").trim();
   const description = String(formData.get("description") ?? "").trim();
 
   const existing = await prisma.mosqueInfo.findFirst();
   if (existing) {
     await prisma.mosqueInfo.update({
       where: { id: existing.id },
-      data: { name, city, address, phone, email, description },
+      data: {
+        name,
+        city,
+        address,
+        phone,
+        email,
+        description,
+        facebookUrl,
+        instagramUrl,
+        youtubeUrl,
+      },
     });
   } else {
     await prisma.mosqueInfo.create({
-      data: { name, city, address, phone, email, description },
+      data: {
+        name,
+        city,
+        address,
+        phone,
+        email,
+        description,
+        facebookUrl,
+        instagramUrl,
+        youtubeUrl,
+      },
     });
   }
 
@@ -85,6 +108,33 @@ export default async function AdminMosquePage() {
                 <input
                   name="email"
                   defaultValue={info?.email ?? ""}
+                  className="h-10 w-full rounded-2xl border border-border/70 bg-background px-3 text-sm outline-none ring-0 transition focus:border-foreground/40"
+                />
+              </Field>
+              <Field label="Facebook URL">
+                <input
+                  name="facebookUrl"
+                  defaultValue={
+                    info?.facebookUrl ?? "https://www.facebook.com/xhamiamati1"
+                  }
+                  className="h-10 w-full rounded-2xl border border-border/70 bg-background px-3 text-sm outline-none ring-0 transition focus:border-foreground/40"
+                />
+              </Field>
+              <Field label="Instagram URL">
+                <input
+                  name="instagramUrl"
+                  defaultValue={
+                    info?.instagramUrl ?? "https://www.instagram.com/xhamiamati1/"
+                  }
+                  className="h-10 w-full rounded-2xl border border-border/70 bg-background px-3 text-sm outline-none ring-0 transition focus:border-foreground/40"
+                />
+              </Field>
+              <Field label="YouTube URL">
+                <input
+                  name="youtubeUrl"
+                  defaultValue={
+                    info?.youtubeUrl ?? "https://www.youtube.com/@xhamiamati1"
+                  }
                   className="h-10 w-full rounded-2xl border border-border/70 bg-background px-3 text-sm outline-none ring-0 transition focus:border-foreground/40"
                 />
               </Field>
