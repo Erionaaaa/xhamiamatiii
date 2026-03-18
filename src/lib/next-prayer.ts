@@ -45,14 +45,35 @@ function getNowPartsInZone(timeZone: string) {
   };
 }
 
-function isoForTodayInZoneAt(timeZone: string, hour: number, minute: number) {
+function isoForDayInZoneAt(
+  timeZone: string,
+  hour: number,
+  minute: number,
+  dayOffset = 0,
+) {
   const nowParts = getNowPartsInZone(timeZone);
   const approxUtc = new Date(
-    Date.UTC(nowParts.year, nowParts.month - 1, nowParts.day, hour, minute, 0, 0),
+    Date.UTC(
+      nowParts.year,
+      nowParts.month - 1,
+      nowParts.day + dayOffset,
+      hour,
+      minute,
+      0,
+      0,
+    ),
   );
   const offsetMin = getTimeZoneOffsetMinutes(timeZone, approxUtc);
   const utcMillis =
-    Date.UTC(nowParts.year, nowParts.month - 1, nowParts.day, hour, minute, 0, 0) -
+    Date.UTC(
+      nowParts.year,
+      nowParts.month - 1,
+      nowParts.day + dayOffset,
+      hour,
+      minute,
+      0,
+      0,
+    ) -
     offsetMin * 60_000;
   return new Date(utcMillis).toISOString();
 }
@@ -80,9 +101,18 @@ export function getNextPrayer(
     if (targetMinutes > nowMinutes) {
       return {
         label: item.label,
-        iso: isoForTodayInZoneAt(timeZone, h, m),
+        iso: isoForDayInZoneAt(timeZone, h, m),
       };
     }
+  }
+
+  for (const item of order) {
+    const [h, m] = timings[item.key].split(":").map((x) => parseInt(x, 10));
+    if (Number.isNaN(h) || Number.isNaN(m)) continue;
+    return {
+      label: item.label,
+      iso: isoForDayInZoneAt(timeZone, h, m, 1),
+    };
   }
 
   return null;

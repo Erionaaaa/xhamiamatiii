@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "./Container";
 
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "info@xhamia.com";
+const CONTACT_EMAIL = "info@xhamia.com";
 const CONTACT_PHONE = process.env.CONTACT_PHONE ?? "043723623";
 
 const QUICK_LINKS = [
@@ -71,7 +71,7 @@ export function Footer() {
                 <a className="block text-muted-foreground transition hover:text-foreground" href={phoneHref}>
                   Tel: {CONTACT_PHONE}
                 </a>
-                <a className="block text-muted-foreground transition hover:text-foreground" href={emailHref}>
+                <a className="block break-all text-muted-foreground transition hover:text-foreground sm:break-normal" href={emailHref}>
                   Email: {CONTACT_EMAIL}
                 </a>
               </div>
