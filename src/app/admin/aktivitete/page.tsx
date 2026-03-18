@@ -67,7 +67,7 @@ async function createActivity(formData: FormData) {
   const coverImage = String(formData.get("coverImage") ?? "").trim();
   const startsAtRaw = String(formData.get("startsAt") ?? "").trim();
   const endsAtRaw = String(formData.get("endsAt") ?? "").trim();
-  const isActive = formData.get("isActive") !== "off";
+  const isActive = formData.get("isActive") === "on";
 
   if (!title) {
     redirect("/admin/aktivitete");
@@ -108,7 +108,7 @@ async function updateActivity(formData: FormData) {
   const coverImage = String(formData.get("coverImage") ?? "").trim();
   const startsAtRaw = String(formData.get("startsAt") ?? "").trim();
   const endsAtRaw = String(formData.get("endsAt") ?? "").trim();
-  const isActive = formData.get("isActive") !== "off";
+  const isActive = formData.get("isActive") === "on";
 
   if (!id) {
     redirect("/admin/aktivitete");

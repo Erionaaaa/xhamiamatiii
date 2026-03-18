@@ -1,10 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import path from "path";
 
-
 const dbUrl = process.env.DATABASE_URL;
-if (dbUrl?.startsWith("file:./") || dbUrl?.startsWith("file:../")) {
-  process.env.DATABASE_URL = `file:${path.resolve(dbUrl.slice(5))}`;
+if (dbUrl?.startsWith("file:")) {
+  const sqlitePath = dbUrl.slice(5);
+  if (sqlitePath && !path.isAbsolute(sqlitePath)) {
+    const resolved = path.resolve(process.cwd(), "prisma", sqlitePath);
+    process.env.DATABASE_URL = `file:${resolved}`;
+  }
 }
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
