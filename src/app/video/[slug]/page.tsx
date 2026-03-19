@@ -120,29 +120,6 @@ export default async function VideoCategoryPage({
                   ))}
                 </div>
               </MotionCard>
-
-              <MotionCard className="overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
-                <div className="relative h-40 w-full">
-                  <Image
-                    src="/donation.webp"
-                    alt="Donacione"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 text-sm font-medium text-zinc-100">
-                    Mbështete programet edukative dhe aktivitetet.
-                  </div>
-                </div>
-                <div className="p-5">
-                  <Link
-                    href="/donacione"
-                    className="inline-flex h-10 w-full items-center justify-center rounded-full bg-foreground px-4 text-sm font-semibold text-background transition hover:opacity-90"
-                  >
-                    Shiko donacionet
-                  </Link>
-                </div>
-              </MotionCard>
             </aside>
 
             <div>
