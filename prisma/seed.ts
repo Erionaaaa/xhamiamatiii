@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.mosqueInfo.deleteMany();
-  // Mos i fshi kategoritë e videove: fshirja e tyre fshin edhe videot (Cascade).
+  
   await prisma.academyPost.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.donationMethod.deleteMany();

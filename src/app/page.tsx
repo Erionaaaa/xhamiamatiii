@@ -114,26 +114,31 @@ function Hero({
               label="Sabahu"
               time={prayer.timings.fajr}
               accent="from-sky-400 to-emerald-400"
+              delay={0}
             />
             <PrayerCard
               label="Dreka"
               time={prayer.timings.dhuhr}
               accent="from-amber-300 to-orange-400"
+              delay={0.06}
             />
             <PrayerCard
               label="Ikindia"
               time={prayer.timings.asr}
               accent="from-orange-400 to-rose-400"
+              delay={0.12}
             />
             <PrayerCard
               label="Akshami"
               time={prayer.timings.maghrib}
               accent="from-rose-400 to-fuchsia-400"
+              delay={0.18}
             />
             <PrayerCard
               label="Jacia"
               time={prayer.timings.isha}
               accent="from-indigo-400 to-sky-500"
+              delay={0.24}
             />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-300">
@@ -166,19 +171,26 @@ function PrayerCard({
   label,
   time,
   accent,
+  delay = 0,
 }: {
   label: string;
   time: string;
   accent: string;
+  delay?: number;
 }) {
   return (
-    <MotionCard className="relative overflow-hidden rounded-3xl border border-white/12 bg-black/18 p-4 text-zinc-50 shadow-[0_16px_48px_rgba(0,0,0,0.32)] backdrop-blur-[1px] sm:backdrop-blur-[2px]">
+    <MotionCard
+      className="relative overflow-hidden rounded-3xl border border-white/12 bg-black/30/90 p-5 text-zinc-50 shadow-[0_18px_52px_rgba(0,0,0,0.46)] backdrop-blur-[2px] sm:p-6 sm:backdrop-blur-[4px] fade-in-right"
+      style={{ animationDelay: `${delay}s` }}
+    >
       <div className={`pointer-events-none absolute inset-x-6 top-0 h-1 rounded-b-full bg-gradient-to-r ${accent}`} />
-      <div className="flex items-center justify-between sm:flex-col sm:items-start gap-2">
-        <div className="text-sm font-bold uppercase tracking-[0.18em] text-white sm:text-[11px] sm:font-medium">
+      <div className="flex items-center justify-between gap-3 sm:flex-col sm:items-start">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-200 sm:text-xs">
           {label}
         </div>
-        <div className="text-2xl font-semibold tracking-tight text-white">{time}</div>
+        <div className="text-3xl font-semibold leading-none tracking-tight text-white sm:text-[2rem] lg:text-[2.35rem]">
+          {time}
+        </div>
       </div>
     </MotionCard>
   );
@@ -308,8 +320,8 @@ function Latest({
   return (
     <MotionSection>
       <Container className="py-12">
-        <div className="grid gap-8 lg:grid-cols-3">
-          <MotionCard className="overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm lg:col-span-2">
+        <div className="space-y-6">
+          <MotionCard className="overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
             <div className="flex items-end justify-between gap-4 p-6">
               <div>
                 <div className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
@@ -326,19 +338,19 @@ function Latest({
                 Të gjitha →
               </Link>
             </div>
-            <div className="grid gap-4 p-6 pt-0 md:grid-cols-2">
+            <div className="grid gap-4 p-6 pt-0 md:auto-rows-fr md:grid-cols-2">
               {videos.slice(0, 4).map((v) => {
                 const id = getYouTubeId(v.youtubeUrl);
                 return (
                   <Link
                     key={v.id}
                     href={`/video/${v.category.slug}#${v.slug}`}
-                    className="group grid gap-3 rounded-2xl border border-border/70 bg-background p-4 transition hover:bg-muted"
+                    className="group grid h-full gap-3 rounded-2xl border border-border/70 bg-background p-4 transition hover:bg-muted/60"
                   >
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
                       {v.category.name}
                     </div>
-                    <div className="text-sm font-semibold tracking-tight">
+                    <div className="line-clamp-2 text-sm font-semibold leading-6 tracking-tight">
                       {v.title}
                     </div>
                     {id ? (
@@ -358,74 +370,108 @@ function Latest({
             </div>
           </MotionCard>
 
-          <div className="grid gap-4">
-            <MotionCard className="rounded-3xl border border-border/70 bg-background p-6 shadow-sm">
-              <div className="flex items-end justify-between gap-4">
-                <div>
-                  <div className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                    Akademia
+          <div className="grid gap-6 md:grid-cols-2">
+            <MotionCard className="group overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
+              <div className="relative h-28 overflow-hidden border-b border-border/70">
+                <Image
+                  src="/academy.jpg"
+                  alt="Akademia"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition duration-700 group-hover:scale-[1.07]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/55 to-black/25" />
+                <div className="relative flex h-full items-end justify-between gap-4 px-6 pb-4">
+                  <div>
+                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400/90 animate-pulse" />
+                      Akademia
+                    </div>
+                    <div className="mt-2 text-lg font-semibold tracking-tight text-white">
+                      Postime të reja
+                    </div>
                   </div>
-                  <div className="mt-2 text-lg font-semibold tracking-tight">
-                    Postime të reja
-                  </div>
-                </div>
-                <Link
-                  href="/akademia"
-                  className="text-sm font-semibold text-muted-foreground hover:text-foreground"
-                >
-                  →
-                </Link>
-              </div>
-              <div className="mt-4 grid gap-3">
-                {posts.map((p) => (
                   <Link
-                    key={p.id}
-                    href={`/akademia/${p.slug}`}
-                    className="rounded-2xl border border-border/70 bg-background p-4 transition hover:bg-muted"
+                    href="/akademia"
+                    className="text-sm font-semibold text-white/85 transition hover:text-white"
                   >
-                    <div className="text-sm font-semibold">{p.title}</div>
-                    {p.excerpt ? (
-                      <div className="mt-1 line-clamp-2 text-sm text-muted-foreground">
-                        {p.excerpt}
-                      </div>
-                    ) : null}
+                    →
                   </Link>
-                ))}
+                </div>
+              </div>
+              <div className="divide-y divide-border/60">
+                {posts.length === 0 ? (
+                  <div className="px-6 py-5 text-sm text-muted-foreground">
+                    Nuk ka postime të reja.
+                  </div>
+                ) : (
+                  posts.map((p) => (
+                    <Link
+                      key={p.id}
+                      href={`/akademia/${p.slug}`}
+                      className="block px-6 py-4 transition hover:bg-muted/50"
+                    >
+                      <div className="line-clamp-2 text-sm font-semibold leading-6">{p.title}</div>
+                      {p.excerpt ? (
+                        <div className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+                          {p.excerpt}
+                        </div>
+                      ) : null}
+                    </Link>
+                  ))
+                )}
               </div>
             </MotionCard>
 
-            <MotionCard className="rounded-3xl border border-border/70 bg-background p-6 shadow-sm">
-              <div className="flex items-end justify-between gap-4">
-                <div>
-                  <div className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                    Aktivitete
+            <MotionCard className="group overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
+              <div className="relative h-28 overflow-hidden border-b border-border/70">
+                <Image
+                  src="/activities.jpg"
+                  alt="Aktivitete"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition duration-700 group-hover:scale-[1.07]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/55 to-black/25" />
+                <div className="relative flex h-full items-end justify-between gap-4 px-6 pb-4">
+                  <div>
+                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
+                      <span className="h-2 w-2 rounded-full bg-sky-400/90 animate-pulse" />
+                      Aktivitete
+                    </div>
+                    <div className="mt-2 text-lg font-semibold tracking-tight text-white">
+                      Njoftime
+                    </div>
                   </div>
-                  <div className="mt-2 text-lg font-semibold tracking-tight">
-                    Njoftime
-                  </div>
-                </div>
-                <Link
-                  href="/aktivitete"
-                  className="text-sm font-semibold text-muted-foreground hover:text-foreground"
-                >
-                  →
-                </Link>
-              </div>
-              <div className="mt-4 grid gap-3">
-                {activities.map((a) => (
                   <Link
-                    key={a.id}
-                    href={`/aktivitete/${a.slug}`}
-                    className="rounded-2xl border border-border/70 bg-background p-4 transition hover:bg-muted"
+                    href="/aktivitete"
+                    className="text-sm font-semibold text-white/85 transition hover:text-white"
                   >
-                    <div className="text-sm font-semibold">{a.title}</div>
-                    {a.summary ? (
-                      <div className="mt-1 line-clamp-2 text-sm text-muted-foreground">
-                        {a.summary}
-                      </div>
-                    ) : null}
+                    →
                   </Link>
-                ))}
+                </div>
+              </div>
+              <div className="divide-y divide-border/60">
+                {activities.length === 0 ? (
+                  <div className="px-6 py-5 text-sm text-muted-foreground">
+                    Nuk ka aktivitete të reja.
+                  </div>
+                ) : (
+                  activities.map((a) => (
+                    <Link
+                      key={a.id}
+                      href={`/aktivitete/${a.slug}`}
+                      className="block px-6 py-4 transition hover:bg-muted/50"
+                    >
+                      <div className="line-clamp-2 text-sm font-semibold leading-6">{a.title}</div>
+                      {a.summary ? (
+                        <div className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+                          {a.summary}
+                        </div>
+                      ) : null}
+                    </Link>
+                  ))
+                )}
               </div>
             </MotionCard>
           </div>
@@ -443,6 +489,9 @@ function Gallery() {
     { src: "/prayer.jpg", alt: "Namazi" },
     { src: "/academy.jpg", alt: "Akademia" },
     { src: "/activities.jpg", alt: "Aktivitete" },
+    { src: "/falja.png", alt: "Falja e namazit" },
+    { src: "/hoxha.png", alt: "Hoxha" },
+    { src: "/xhamiaa.png", alt: "Xhamia" },
   ];
 
   return (

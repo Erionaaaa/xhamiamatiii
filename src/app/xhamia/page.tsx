@@ -129,6 +129,27 @@ export default async function MosquePage() {
             </MotionCard>
           </div>
 
+          <MotionCard className="mt-8 rounded-3xl border border-border/70 bg-background p-6 shadow-sm">
+            <div className="text-sm font-semibold">Historia dhe misioni ynë</div>
+            <div className="mt-4 grid gap-4 text-sm leading-7 text-muted-foreground md:grid-cols-2">
+              <p>
+                Xhamia Mati 1 është ndërtuar mbi vlerat e besimit, bashkësisë dhe shërbimit ndaj njerëzve.
+                Që nga hapja e saj, xhamia ka shërbyer si pikë referimi shpirtërore dhe kulturore për
+                banorët e lagjes dhe të gjithë ata që kërkojnë dije fetare e qetësi shpirtërore.
+                Brenda mureve të saj janë mbajtur shekuj traditash të shtjelluara me dashuri dhe
+                përkushtim ndaj fesë islame.
+              </p>
+              <p>
+                Misioni ynë është të ofrojmë një ambient miqësor dhe gjithëpërfshirës ku çdo musliman
+                — fëmijë, i ri apo i moshuar — të ndihet i mirëpritur. Punojmë vazhdimisht për
+                forcimin e lidhjeve familjare dhe komunitare, organizimin e aktiviteteve edukative e
+                shëndetësore, si dhe për përkrahjen e familjeve në nevojë. Nga ligjëratat e
+                xhumasë te akademia verore, çdo program është hartuar me qëllim që ta bëjë komunitetin
+                tonë më të fortë dhe më të ndërgjegjshëm.
+              </p>
+            </div>
+          </MotionCard>
+
           <div className="mt-10">
             <div className="text-sm font-semibold">Galeria</div>
             <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

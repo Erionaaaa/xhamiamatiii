@@ -66,5 +66,17 @@ export const QUOTES: Quote[] = [
     sq: "“O Zoti im, ma zgjero gjoksin dhe ma lehtëso punën.”",
     ref: "Taha 20:25–26 (dua)",
   },
+  {
+    kind: "Ajet",
+    ar: "أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
+    sq: "“Vërtet, me përmendjen e Allahut qetësohen zemrat.”",
+    ref: "Er‑Ra'd 13:28",
+  },
+  {
+    kind: "Ajet",
+    ar: "وَقُل رَّبِّ زِدْنِى عِلْمًا",
+    sq: "“Dhe thuaj: O Zoti im, ma shto diturinë.”",
+    ref: "Taha 20:114",
+  },
 ];
 

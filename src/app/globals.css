@@ -34,6 +34,24 @@ body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(14px);
+  animation: fade-in-right 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation-fill-mode: forwards;
+}
+
 h1,
 h2,
 h3 {

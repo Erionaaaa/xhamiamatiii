@@ -77,6 +77,28 @@ export default async function PrayerTimesPage() {
       title: "Ettehijati dhe përfundimi",
       body: "Në uljen e fundit lexo ettehijatin, salavatet dhe lutjet, pastaj jep selam në të djathtë dhe në të majtë për ta mbyllur namazin.",
     },
+    {
+      title: "Vazhdimësia dhe rregullsia",
+      body: "Namazi falet pesë herë në ditë. Mundohu ta falësh në kohën e caktuar dhe ndërto gradualisht zakonin e rregullt — secila falje e vonuar është e plotësueshme.",
+    },
+  ] as const;
+  const afterPrayerItems = [
+    {
+      title: "Dhikri pas selamit",
+      body: "Pas përfundimit të namazit, qëndro pak me qetësi dhe bëj dhikrin e zakonshëm si istigfari, tesbihat dhe falënderimet ndaj Allahut.",
+    },
+    {
+      title: "Lutje personale",
+      body: "Pas dhikrit mund të bësh dua me fjalët e tua, duke kërkuar falje, udhëzim, lehtësi dhe mirësi për veten, familjen dhe komunitetin.",
+    },
+    {
+      title: "Mëso gradualisht",
+      body: "Nëse je fillestar, mëso fillimisht shtyllat kryesore dhe leximet bazë. Më pas shto sure, dua dhe rregulla të tjera hap pas hapi.",
+    },
+    {
+      title: "Pyet kur nuk je i sigurt",
+      body: "Nëse ke paqartësi për shqiptimin, numrin e rekateve ose veprimet në namaz, verifikoji me imam ose me një mësues të besueshëm.",
+    },
   ] as const;
   const beginnerPrayerPdfUrl =
     "https://d1.islamhouse.com/data/sq/ih_articles/single/sq_Falja_e_namazit_per_fillestare.pdf";
@@ -202,7 +224,9 @@ export default async function PrayerTimesPage() {
                 {prayerGuideSteps.map((step, index) => (
                   <MotionCard
                     key={step.title}
-                    className="rounded-3xl border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02))] p-6 shadow-sm"
+                    className={`rounded-3xl border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02))] p-6 shadow-sm${
+                      index === prayerGuideSteps.length - 1 ? " xl:col-span-2" : ""
+                    }`}
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-sm font-semibold text-background">
@@ -224,6 +248,39 @@ export default async function PrayerTimesPage() {
                 Për mësim praktik më të detajuar, lexim korrekt dhe dallimet që
                 mund të ketë sipas medhhebit, konsultohu me imam ose mësues të
                 besueshëm.
+              </div>
+
+              <div className="mt-6 rounded-[2rem] border border-border/70 bg-background p-5 shadow-sm sm:p-6">
+                <div className="max-w-3xl">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-xs font-semibold text-muted-foreground">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                    Pas ettehijatit
+                  </div>
+                  <h3 className="mt-4 text-xl font-semibold tracking-tight sm:text-2xl">
+                    Çfarë mund të bësh pas përfundimit të namazit
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                    Pasi jep selam dhe përfundon namazin, zakonisht vazhdohet me
+                    dhikër, lutje dhe mësim gradual të pjesëve që ende nuk i ke
+                    të sigurta.
+                  </p>
+                </div>
+
+                <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                  {afterPrayerItems.map((item) => (
+                    <MotionCard
+                      key={item.title}
+                      className="rounded-3xl border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02))] p-5 shadow-sm"
+                    >
+                      <div className="text-base font-semibold tracking-tight">
+                        {item.title}
+                      </div>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                        {item.body}
+                      </p>
+                    </MotionCard>
+                  ))}
+                </div>
               </div>
 
               <div className="mt-4 rounded-3xl border border-border/70 bg-background px-5 py-4">
