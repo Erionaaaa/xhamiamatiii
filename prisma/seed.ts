@@ -85,6 +85,20 @@ async function main() {
     });
   }
 
+  // Video të reja shtohen gjithmonë me upsert (nuk bllokohen nga guard-i i mësipërm)
+  await prisma.video.upsert({
+    where: { slug: "ders" },
+    update: {},
+    create: {
+      title: "Ders",
+      slug: "ders",
+      youtubeUrl: "https://www.youtube.com/watch?v=RIrCUwh8WIQ",
+      description: "Ders - Ligjeron Hoxhe Fadil Musliu",
+      categoryId: ligjerata.id,
+      isActive: true,
+    },
+  });
+
   await prisma.academyPost.createMany({
     data: [
       {
