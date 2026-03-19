@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
 
 export const metadata = {
-  title: "Video — Xhamia Mati 1",
+  title: "Video Xhamia Mati 1",
 };
 
 export default async function VideosPage() {
@@ -13,7 +13,7 @@ export default async function VideosPage() {
     where: { isActive: true },
     orderBy: [{ order: "asc" }, { name: "asc" }],
     include: {
-      _count: { select: { videos: true } },
+      _count: { select: { videos: { where: { isActive: true } } } },
     },
   });
 

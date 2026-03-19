@@ -54,7 +54,7 @@ async function createVideo(formData: FormData) {
   const description = String(formData.get("description") ?? "").trim();
   const categoryId = String(formData.get("categoryId") ?? "").trim();
   const isFeatured = formData.get("isFeatured") === "on";
-  const isActive = formData.get("isActive") !== "off";
+  const isActive = formData.get("isActive") === "on";
 
   if (!title || !youtubeUrl || !categoryId) {
     redirect("/admin/video");
@@ -101,7 +101,7 @@ async function updateVideo(formData: FormData) {
   const description = String(formData.get("description") ?? "").trim();
   const categoryId = String(formData.get("categoryId") ?? "").trim();
   const isFeatured = formData.get("isFeatured") === "on";
-  const isActive = formData.get("isActive") !== "off";
+  const isActive = formData.get("isActive") === "on";
 
   if (!id) {
     redirect("/admin/video");

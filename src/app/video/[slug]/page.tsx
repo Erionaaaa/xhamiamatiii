@@ -33,7 +33,7 @@ export default async function VideoCategoryPage({
   const categories = await prisma.videoCategory.findMany({
     where: { isActive: true },
     orderBy: [{ order: "asc" }, { name: "asc" }],
-    include: { _count: { select: { videos: true } } },
+    include: { _count: { select: { videos: { where: { isActive: true } } } } },
   });
 
   const videos = await prisma.video.findMany({

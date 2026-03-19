@@ -9,7 +9,7 @@ export function getYouTubeId(url: string) {
     const shortsIdx = parts.indexOf("shorts");
     if (shortsIdx >= 0 && parts[shortsIdx + 1]) return parts[shortsIdx + 1];
   } catch {
-    // ignore
+    
   }
   return null;
 }
