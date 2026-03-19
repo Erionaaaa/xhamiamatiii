@@ -23,6 +23,7 @@ export async function Footer() {
   const mosqueCity = info?.city ?? "Prishtinë";
   const contactEmail = info?.email ?? process.env.CONTACT_EMAIL ?? "info@xhamia.com";
   const contactPhone = info?.phone ?? process.env.CONTACT_PHONE ?? "043723623";
+  const contactAddress = info?.address?.trim();
   const phoneHref = `tel:${contactPhone.replace(/\s+/g, "")}`;
   const emailHref = `mailto:${contactEmail}`;
   const socialLinks = [
@@ -76,8 +77,7 @@ export async function Footer() {
                 </div>
               </Link>
               <p className="max-w-sm text-sm leading-6 text-muted-foreground">
-                Platformë informative për xhematin: oraret e namazit, video,
-                Akademia, aktivitetet dhe donacionet në një vend.
+                Informacion i përmbledhur për xhaminë: oraret, aktivitetet, Akademia dhe video.
               </p>
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
@@ -115,20 +115,41 @@ export async function Footer() {
                       </Link>
                     </li>
                   ))}
+                  <li>
+                    <Link className="transition hover:text-foreground" href="/kontakt">
+                      Kontakti
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </div>
 
             <div className="space-y-4 lg:justify-self-end">
-              <h4 className="text-sm font-semibold">Kontakt & informata</h4>
+              <h4 className="text-sm font-semibold">Kontakt</h4>
               <div className="w-full max-w-md rounded-3xl border border-border/70 bg-muted/20 p-5">
                 <div className="space-y-2 text-sm">
-                  <a className="block text-muted-foreground transition hover:text-foreground" href={phoneHref}>
-                    Tel: {contactPhone}
-                  </a>
-                  <a className="block break-all text-muted-foreground transition hover:text-foreground sm:break-normal" href={emailHref}>
-                    Email: {contactEmail}
-                  </a>
+                  <div className="grid gap-2 text-muted-foreground">
+                    {contactAddress ? (
+                      <div className="leading-6">
+                        <span className="text-foreground/80">Adresa:</span>{" "}
+                        <span className="break-words">{contactAddress}</span>
+                      </div>
+                    ) : null}
+                    <a
+                      className="block transition hover:text-foreground"
+                      href={phoneHref}
+                      aria-label={`Telefono ${contactPhone}`}
+                    >
+                      <span className="text-foreground/80">Tel:</span> {contactPhone}
+                    </a>
+                    <a
+                      className="block break-all transition hover:text-foreground sm:break-normal"
+                      href={emailHref}
+                      aria-label={`Dergo email ne ${contactEmail}`}
+                    >
+                      <span className="text-foreground/80">Email:</span> {contactEmail}
+                    </a>
+                  </div>
                 </div>
                 <div className="mt-5 flex flex-wrap gap-2">
                   <Link
@@ -145,7 +166,7 @@ export async function Footer() {
 
         <div className="mx-auto mt-10 flex max-w-5xl flex-col gap-2 border-t border-border/60 pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {mosqueName}. Të gjitha të drejtat e rezervuara.</p>
-          <p>Ndërtuar për informim dhe organizim të xhematit.</p>
+          <p>{mosqueCity} • Platformë informative për xhematin.</p>
         </div>
       </Container>
     </footer>
