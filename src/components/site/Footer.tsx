@@ -57,57 +57,59 @@ export async function Footer() {
     <footer className="border-t border-border/70 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.08),transparent_34%),linear-gradient(180deg,rgba(0,0,0,0.02)_0%,rgba(0,0,0,0)_100%)]">
       <Container className="py-12 sm:py-14">
         <div className="mx-auto max-w-5xl">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.8fr)_minmax(0,1fr)]">
-            <div className="space-y-6">
-              <Link href="/" className="inline-flex items-center gap-3">
-                <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-border/70 bg-background shadow-sm">
-                  <Image
-                    src="/logo.png"
-                    alt={`Logo ${mosqueName}`}
-                    fill
-                    sizes="48px"
-                    className="object-contain p-1"
-                  />
-                </div>
+          <div className="flex flex-col gap-6 lg:flex-row">
+            <div className="rounded-3xl border border-border/70 bg-background/70 p-6 shadow-sm backdrop-blur lg:flex-[1.25]">
+              <div className="space-y-6">
+                <Link href="/" className="inline-flex items-center gap-3">
+                  <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-border/70 bg-background shadow-sm">
+                    <Image
+                      src="/logo.png"
+                      alt={`Logo ${mosqueName}`}
+                      fill
+                      sizes="48px"
+                      className="object-contain p-1"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold leading-tight">{mosqueName}</h3>
+                    <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                      {mosqueCity} • Qendra e xhematit
+                    </p>
+                  </div>
+                </Link>
+                <p className="max-w-sm text-sm leading-6 text-muted-foreground">
+                  Informacion i përmbledhur për xhaminë: oraret, aktivitetet, Akademia dhe video.
+                </p>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">{mosqueName}</h3>
-                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                    {mosqueCity} • Qendra e xhematit
-                  </p>
-                </div>
-              </Link>
-              <p className="max-w-sm text-sm leading-6 text-muted-foreground">
-                Informacion i përmbledhur për xhaminë: oraret, aktivitetet, Akademia dhe video.
-              </p>
-              <div>
-                <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                  Rrjetet sociale
-                </div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {socialLinks.map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex h-10 items-center gap-2 rounded-full border border-border/60 bg-background px-3 text-sm font-semibold text-muted-foreground transition hover:bg-muted hover:text-foreground"
-                    >
-                      <span
-                        className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${item.iconClass}`}
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                    Rrjetet sociale
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {socialLinks.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex h-10 items-center gap-2 rounded-full border border-border/60 bg-background px-3 text-sm font-semibold text-muted-foreground transition hover:bg-muted hover:text-foreground"
                       >
-                        <SocialIcon platform={item.platform} className="h-3 w-3" />
-                      </span>
-                      {item.label}
-                    </a>
-                  ))}
+                        <span
+                          className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${item.iconClass}`}
+                        >
+                          <SocialIcon platform={item.platform} className="h-3 w-3" />
+                        </span>
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="rounded-3xl border border-border/70 bg-background/70 p-6 shadow-sm backdrop-blur lg:flex-[0.75]">
               <nav className="space-y-3" aria-label="Linqe të shpejta">
                 <h4 className="text-sm font-semibold">Linqe të shpejta</h4>
-                <ul className="grid gap-2 text-sm text-muted-foreground">
+                <ul className="space-y-2 text-sm text-muted-foreground">
                   {QUICK_LINKS.map((item) => (
                     <li key={item.href}>
                       <Link className="transition hover:text-foreground" href={item.href}>
@@ -124,11 +126,11 @@ export async function Footer() {
               </nav>
             </div>
 
-            <div className="space-y-4 lg:justify-self-end">
+            <div className="rounded-3xl border border-border/70 bg-background/70 p-6 shadow-sm backdrop-blur lg:flex-1">
               <h4 className="text-sm font-semibold">Kontakt</h4>
-              <div className="w-full max-w-md rounded-3xl border border-border/70 bg-muted/20 p-5">
+              <div className="mt-4 w-full rounded-2xl border border-border/70 bg-muted/20 p-5">
                 <div className="space-y-2 text-sm">
-                  <div className="grid gap-2 text-muted-foreground">
+                  <div className="space-y-2 text-muted-foreground">
                     {contactAddress ? (
                       <div className="leading-6">
                         <span className="text-foreground/80">Adresa:</span>{" "}

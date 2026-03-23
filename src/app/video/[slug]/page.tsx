@@ -23,10 +23,12 @@ function coverFor(slug: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const category = await prisma.videoCategory.findUnique({
-    where: { slug: params.slug },
+  const { slug } = await params;
+
+  const category = await prisma.videoCategory.findFirst({
+    where: { slug },
     select: { slug: true, name: true, isActive: true },
   });
 
@@ -52,7 +54,7 @@ export default async function VideoCategoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const category = await prisma.videoCategory.findUnique({
+  const category = await prisma.videoCategory.findFirst({
     where: { slug },
   });
   if (!category || !category.isActive) notFound();

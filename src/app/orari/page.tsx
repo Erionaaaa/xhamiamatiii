@@ -105,6 +105,32 @@ export default async function PrayerTimesPage() {
       body: "Nëse ke paqartësi për shqiptimin, numrin e rekateve ose veprimet në namaz, verifikoji me imam ose me një mësues të besueshëm.",
     },
   ] as const;
+  const ayahCards = [
+    {
+      text: "Vërtet, namazi i ndalon veprat e shëmtuara dhe të këqija.",
+      reference: "El-Ankebut, 45",
+    },
+    {
+      text: "Ruajini me kujdes namazet dhe namazin e mesëm.",
+      reference: "El-Bekare, 238",
+    },
+    {
+      text: "E përmend Allahun shpesh, që të shpëtosh.",
+      reference: "El-Xhumua, 10",
+    },
+    {
+      text: "Dhe kërkoni ndihmë me durim dhe namaz.",
+      reference: "El-Bekare, 45",
+    },
+    {
+      text: "Kujtoni Mua, që t'ju kujtoj juve.",
+      reference: "El-Bekare, 152",
+    },
+    {
+      text: "Ai është me durimtarët.",
+      reference: "El-Bekare, 153",
+    },
+  ] as const;
   const beginnerPrayerPdfUrl =
     "https://d1.islamhouse.com/data/sq/ih_articles/single/sq_Falja_e_namazit_per_fillestare.pdf";
 
@@ -207,6 +233,36 @@ export default async function PrayerTimesPage() {
                   isHighlighted={item.key === nextPrayerKey}
                 />
               ))}
+            </div>
+
+            <div className="mt-8 rounded-[2rem] border border-border/70 bg-background p-5 shadow-sm sm:p-7">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-xs font-semibold text-muted-foreground">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  Reflektim i ditës
+                </div>
+                <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+                  Ajete për qetësi dhe motivim
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                  Një përzgjedhje e shkurtër ajetesh për ta bërë faqen më të dobishme
+                  në përdorim ditor, sidomos në mobile.
+                </p>
+              </div>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {ayahCards.map((ayah) => (
+                  <MotionCard
+                    key={ayah.reference}
+                    className="rounded-3xl border border-border/70 bg-[linear-gradient(180deg,rgba(16,185,129,0.08),rgba(255,255,255,0.02))] p-5 shadow-sm"
+                  >
+                    <p className="text-sm leading-7 text-foreground/90">&ldquo;{ayah.text}&rdquo;</p>
+                    <div className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                      {ayah.reference}
+                    </div>
+                  </MotionCard>
+                ))}
+              </div>
             </div>
 
             <div className="mt-10 rounded-[2rem] border border-border/70 bg-background p-6 shadow-sm sm:p-8">
