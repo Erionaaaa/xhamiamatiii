@@ -6,6 +6,11 @@ import { MotionSection, MotionCard } from "@/components/site/motion";
 
 export const metadata = {
   title: "Aktivitete — Xhamia Mati 1",
+  description:
+    "Njoftime për aktivitete, aksione humanitare dhe programe të xhamisë gjatë vitit. Në vijim dhe të kaluara.",
+  alternates: {
+    canonical: "/aktivitete",
+  },
 };
 
 const DEFAULT_ACTIVITY_IMAGES = [

@@ -14,10 +14,42 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  // Fallback që të mos prishet build. Zëvendësoje me domenin tënd.
+  "https://example.com";
+
+let metadataBase: URL;
+try {
+  metadataBase = new URL(siteUrl);
+} catch {
+  metadataBase = new URL("https://example.com");
+}
+
 export const metadata: Metadata = {
-  title: "Xhamia Mati 1 — Prishtinë",
+  metadataBase,
+  title: {
+    default: "Xhamia Mati 1 — Prishtinë",
+    template: "%s | Xhamia Mati 1",
+  },
   description:
     "Informacion për xhaminë, oraret e namazit, video sipas tematikave, Akademia, aktivitetet dhe donacionet.",
+  openGraph: {
+    type: "website",
+    locale: "sq_XK",
+    siteName: "Xhamia Mati 1",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Xhamia Mati 1",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

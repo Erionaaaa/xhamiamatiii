@@ -9,6 +9,9 @@ export const metadata = {
   title: "Donacione — Xhamia Mati 1",
   description:
     "Mënyrat e donacionit për Xhaminë Mati 1, me informata të qarta për pagesa bankare, online dhe kontakt direkt.",
+  alternates: {
+    canonical: "/donacione",
+  },
 };
 
 export default async function DonationsPage() {

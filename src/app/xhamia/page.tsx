@@ -5,6 +5,11 @@ import { MotionSection, MotionCard } from "@/components/site/motion";
 
 export const metadata = {
   title: "Xhamia — Xhamia Mati 1",
+  description:
+    "Informacion për Xhaminë Mati 1: adresa, misioni dhe shërbimet kryesore. Galeri dhe detaje kontakti.",
+  alternates: {
+    canonical: "/xhamia",
+  },
 };
 
 const GALLERY_IMAGES = [

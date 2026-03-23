@@ -9,6 +9,11 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Akademia — Xhamia Mati 1",
+  description:
+    "Artikuj, materiale dhe postime edukative nga Akademia e Xhamisë Mati 1. Mësim, texhvid dhe orientim praktik.",
+  alternates: {
+    canonical: "/akademia",
+  },
 };
 
 const ACADEMY_TRACKS = [

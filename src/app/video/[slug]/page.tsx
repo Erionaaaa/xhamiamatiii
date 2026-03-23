@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Container } from "@/components/site/Container";
 import { prisma } from "@/lib/prisma";
 import { getYouTubeId } from "@/lib/youtube";
@@ -17,6 +18,32 @@ function coverFor(slug: string) {
     default:
       return "/xhamia.jpg";
   }
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const category = await prisma.videoCategory.findUnique({
+    where: { slug: params.slug },
+    select: { slug: true, name: true, isActive: true },
+  });
+
+  if (!category || !category.isActive) {
+    return {
+      title: "Video — Xhamia Mati 1",
+      description: "Video të organizuara sipas tematikave.",
+    };
+  }
+
+  return {
+    title: category.name,
+    description: `Video të organizuara sipas tematikave: ${category.name}.`,
+    alternates: {
+      canonical: `/video/${category.slug}`,
+    },
+  };
 }
 
 export default async function VideoCategoryPage({

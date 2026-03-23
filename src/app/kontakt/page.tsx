@@ -6,6 +6,11 @@ import { MotionSection, MotionCard } from "@/components/site/motion";
 
 export const metadata = {
   title: "Kontakti — Xhamia Mati 1",
+  description:
+    "Na kontaktoni për pyetje, sugjerime, bashkëpunim dhe informata rreth Xhamisë Mati 1. Formular, adresë dhe rrjete sociale.",
+  alternates: {
+    canonical: "/kontakt",
+  },
 };
 
 export default async function ContactPage() {

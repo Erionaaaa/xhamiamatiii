@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Container } from "@/components/site/Container";
 import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
@@ -141,5 +142,31 @@ export default async function ActivityPage({
       </MotionSection>
     </main>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const a = await prisma.activity.findUnique({
+    where: { slug: params.slug },
+    select: { slug: true, title: true, summary: true, isActive: true },
+  });
+
+  if (!a || !a.isActive) {
+    return {
+      title: "Aktivitete — Xhamia Mati 1",
+      description: "Njoftime për aktivitete, aksione dhe evente në xhami.",
+    };
+  }
+
+  return {
+    title: a.title,
+    description: a.summary ?? undefined,
+    alternates: {
+      canonical: `/aktivitete/${a.slug}`,
+    },
+  };
 }
 

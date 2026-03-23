@@ -4,6 +4,11 @@ import { QUOTES } from "@/lib/quotes";
 
 export const metadata = {
   title: "Ajete & Duate — Xhamia Mati 1",
+  description:
+    "Përmbledhje e ajeteve, lutjeve (duave) dhe thënieve motivuese për t’u lexuar e përkujtuar çdo ditë.",
+  alternates: {
+    canonical: "/ajete",
+  },
 };
 
 export default function AjetePage() {

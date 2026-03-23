@@ -1,9 +1,36 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Container } from "@/components/site/Container";
 import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await prisma.academyPost.findUnique({
+    where: { slug: params.slug },
+    select: { slug: true, title: true, excerpt: true, isActive: true },
+  });
+
+  if (!post || !post.isActive) {
+    return {
+      title: "Akademia — Xhamia Mati 1",
+      description: "Postime dhe materiale edukative nga Akademia.",
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt ?? undefined,
+    alternates: {
+      canonical: `/akademia/${post.slug}`,
+    },
+  };
+}
 
 export default async function AcademyPostPage({
   params,

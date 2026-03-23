@@ -6,6 +6,11 @@ import { MotionSection, MotionCard } from "@/components/site/motion";
 
 export const metadata = {
   title: "Video Xhamia Mati 1",
+  description:
+    "Video të organizuara sipas tematikave: ligjërata, hytbe, Kur’an dhe tema edukative. Zgjidh kategorinë dhe shiko përmbajtjen.",
+  alternates: {
+    canonical: "/video",
+  },
 };
 
 export default async function VideosPage() {

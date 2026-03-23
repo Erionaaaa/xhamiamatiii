@@ -8,6 +8,11 @@ import { getNextPrayer } from "@/lib/next-prayer";
 
 export const metadata = {
   title: "Orari i namazit — Xhamia Mati 1",
+  description:
+    "Oraret e namazit për Prishtinë, të përditësuara për Xhaminë Mati 1. Falënderimi dhe praktika ditore në një vend.",
+  alternates: {
+    canonical: "/orari",
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -391,15 +396,19 @@ function TimeCard({
           : "border-border/70 bg-background"
       }`}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="text-sm text-muted-foreground">{label}</div>
-        {isHighlighted ? (
-          <span className="rounded-full bg-amber-400/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-600 dark:text-amber-300">
-            Tani në fokus
-          </span>
-        ) : null}
+      <div className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+        <div className="min-w-0 text-left">
+          <div className="text-sm text-muted-foreground">{label}</div>
+          {isHighlighted ? (
+            <span className="mt-2 inline-flex rounded-full bg-amber-400/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-600 dark:text-amber-300">
+              Tani në fokus
+            </span>
+          ) : null}
+        </div>
+        <div className="shrink-0 whitespace-nowrap text-right text-2xl font-semibold tracking-tight sm:text-3xl">
+          {value}
+        </div>
       </div>
-      <div className="mt-3 text-3xl font-semibold tracking-tight">{value}</div>
     </MotionCard>
   );
 }

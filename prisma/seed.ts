@@ -18,7 +18,7 @@ async function main() {
       instagramUrl: "https://www.instagram.com/xhamiamati1/",
       youtubeUrl: "https://www.youtube.com/@xhamiamati1",
       description:
-        "Mirë se vini në faqen zyrtare të Xhamisë Mati 1. Këtu gjeni informacion, oraret e namazit, video sipas tematikave, Akademinë, aktivitetet dhe mënyrat e donacionit.",
+        "Xhamia Mati 1 — qendër shpirtërore e komunitetit. Oraret e namazit, ligjëratat, Akademia dhe aktivitetet në një vend.",
     },
   });
 

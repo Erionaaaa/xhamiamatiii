@@ -96,9 +96,9 @@ function Hero({
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-300">
             {infoCity ?? "Prishtinë"} • ORET E NAMAZIT
           </p>
-          <p className="max-w-xl text-sm font-semibold leading-7 text-zinc-200">
+          <p className="max-w-xl text-base font-bold leading-7 text-white">
             {infoDescription ??
-              "Orari i namazit në kohë reale, ligjërata, Akademia, aktivitetet dhe mundësitë për të ndihmuar xhaminë."}
+              "Xhamia Mati 1 — qendër shpirtërore e komunitetit. Oraret e namazit, ligjëratat, Akademia dhe aktivitetet në një vend."}
           </p>
           <div className="pt-1">
             <NextPrayerCountdown
@@ -184,11 +184,11 @@ function PrayerCard({
       style={{ animationDelay: `${delay}s` }}
     >
       <div className={`pointer-events-none absolute inset-x-6 top-0 h-1 rounded-b-full bg-gradient-to-r ${accent}`} />
-      <div className="flex items-center justify-between gap-3 sm:flex-col sm:items-start">
+      <div className="flex flex-col items-center justify-center gap-2 text-center">
         <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-200 sm:text-xs">
           {label}
         </div>
-        <div className="text-3xl font-semibold leading-none tracking-tight text-white sm:text-[2rem] lg:text-[2.35rem]">
+        <div className="text-3xl font-semibold leading-none tracking-tight text-whicenter sm:text-center:text-[2rem] lg:text-[2.35rem]">
           {time}
         </div>
       </div>
@@ -490,8 +490,8 @@ function Gallery() {
     { src: "/academy.jpg", alt: "Akademia" },
     { src: "/activities.jpg", alt: "Aktivitete" },
     { src: "/falja.png", alt: "Falja e namazit" },
-    { src: "/hoxha.png", alt: "Hoxha" },
-    { src: "/xhamiaa.png", alt: "Xhamia" },
+    { src: "/hoxha1.jpg", alt: "Hoxha" },
+    { src: "/21.png", alt: "Xhamia" },
   ];
 
   return (
