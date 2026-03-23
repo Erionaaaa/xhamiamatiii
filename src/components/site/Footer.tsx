@@ -54,11 +54,11 @@ export async function Footer() {
   ] as const;
 
   return (
-    <footer className="border-t border-border/70 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.08),transparent_34%),linear-gradient(180deg,rgba(0,0,0,0.02)_0%,rgba(0,0,0,0)_100%)]">
+    <footer className="border-t border-border/70 bg-background">
       <Container className="py-12 sm:py-14">
         <div className="mx-auto max-w-5xl">
-          <div className="flex flex-col gap-6 lg:flex-row">
-            <div className="rounded-3xl border border-border/70 bg-background/70 p-6 shadow-sm backdrop-blur lg:flex-[1.25]">
+          <div className="flex flex-col gap-8 lg:flex-row">
+            <div className="p-1 lg:flex-[1.25]">
               <div className="space-y-6">
                 <Link href="/" className="inline-flex items-center gap-3">
                   <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-border/70 bg-background shadow-sm">
@@ -106,7 +106,7 @@ export async function Footer() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-border/70 bg-background/70 p-6 shadow-sm backdrop-blur lg:flex-[0.75]">
+            <div className="p-1 lg:flex-[0.75]">
               <nav className="space-y-3" aria-label="Linqe të shpejta">
                 <h4 className="text-sm font-semibold">Linqe të shpejta</h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -126,7 +126,7 @@ export async function Footer() {
               </nav>
             </div>
 
-            <div className="rounded-3xl border border-border/70 bg-background/70 p-6 shadow-sm backdrop-blur lg:flex-1">
+            <div className="p-1 lg:flex-1">
               <h4 className="text-sm font-semibold">Kontakt</h4>
               <div className="mt-4 w-full rounded-2xl border border-border/70 bg-muted/20 p-5">
                 <div className="space-y-2 text-sm">

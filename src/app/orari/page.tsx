@@ -15,7 +15,7 @@ export const metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 5 * 60;
 
 export default async function PrayerTimesPage() {
   const data = await getPrayerTimesForPrishtina();

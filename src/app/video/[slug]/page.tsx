@@ -70,8 +70,33 @@ export default async function VideoCategoryPage({
     orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
   });
 
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com").replace(/\/$/, "");
+  const videoCollectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${category.name} | Video`,
+    url: `${baseUrl}/video/${category.slug}`,
+    inLanguage: "sq-XK",
+    hasPart: videos.slice(0, 20).map((v) => {
+      const id = getYouTubeId(v.youtubeUrl);
+      return {
+        "@type": "VideoObject",
+        name: v.title,
+        description: v.description ?? undefined,
+        uploadDate: (v.publishedAt ?? v.createdAt)?.toISOString(),
+        thumbnailUrl: id ? [`https://i.ytimg.com/vi/${id}/hqdefault.jpg`] : undefined,
+        embedUrl: id ? `https://www.youtube.com/embed/${id}` : undefined,
+        contentUrl: v.youtubeUrl,
+      };
+    }),
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoCollectionSchema) }}
+      />
       <MotionSection>
         <div className="relative overflow-hidden border-b border-border/60">
           <div className="absolute inset-0">
@@ -204,6 +229,7 @@ export default async function VideoCategoryPage({
                                 className="h-full w-full"
                                 src={`https://www.youtube.com/embed/${id}`}
                                 title={v.title}
+                                loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin"
                                 allowFullScreen

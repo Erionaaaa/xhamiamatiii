@@ -41,6 +41,31 @@ export default async function AcademyPostPage({
   const post = await prisma.academyPost.findUnique({ where: { slug } });
   if (!post || !post.isActive) notFound();
 
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com").replace(/\/$/, "");
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt ?? undefined,
+    datePublished: (post.publishedAt ?? post.createdAt)?.toISOString(),
+    dateModified: (post.updatedAt ?? post.publishedAt ?? post.createdAt)?.toISOString(),
+    mainEntityOfPage: `${baseUrl}/akademia/${post.slug}`,
+    inLanguage: "sq-XK",
+    image: [post.coverImage || `${baseUrl}/academy.jpg`],
+    author: {
+      "@type": "Organization",
+      name: "Xhamia Mati 1",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Xhamia Mati 1",
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/opengraph-image.png`,
+      },
+    },
+  };
+
   const latest = await prisma.academyPost.findMany({
     where: { isActive: true },
     orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
@@ -49,6 +74,10 @@ export default async function AcademyPostPage({
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <MotionSection>
         <div className="relative overflow-hidden border-b border-border/60">
           <div className="absolute inset-0">

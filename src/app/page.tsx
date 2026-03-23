@@ -34,9 +34,40 @@ export default async function Home() {
   });
 
   const next = getNextPrayer(prayer.timings, prayer.timezone ?? "Europe/Belgrade");
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com").replace(/\/$/, "");
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: info?.name ?? "Xhamia Mati 1",
+    url: baseUrl,
+    logo: `${baseUrl}/opengraph-image.png`,
+    description:
+      info?.description ??
+      "Qendra zyrtare e Xhamisë Mati 1 me oraret e namazit, aktivitetet dhe materialet edukative.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: info?.city ?? "Prishtinë",
+      addressCountry: "XK",
+    },
+  };
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Xhamia Mati 1",
+    url: baseUrl,
+    inLanguage: "sq-XK",
+  };
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
       <Hero
         infoName={info?.name}
         infoCity={info?.city}

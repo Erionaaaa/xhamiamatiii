@@ -34,10 +34,36 @@ export const metadata: Metadata = {
   },
   description:
     "Informacion për xhaminë, oraret e namazit, video sipas tematikave, Akademia, aktivitetet dhe donacionet.",
+  keywords: [
+    "Xhamia Mati 1",
+    "xhamia prishtine",
+    "orari i namazit",
+    "akademia islame",
+    "video islame",
+    "aktivitete xhamie",
+  ],
+  authors: [{ name: "Xhamia Mati 1" }],
+  creator: "Xhamia Mati 1",
+  publisher: "Xhamia Mati 1",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "sq_XK",
     siteName: "Xhamia Mati 1",
+    url: "/",
     images: [
       {
         url: "/opengraph-image.png",
