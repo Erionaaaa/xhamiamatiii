@@ -231,7 +231,7 @@ function Sections() {
   return (
     <MotionSection className="">
       <Container className="py-12">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <Feature
             title="Orari i namazit (Prishtinë)"
             desc="I përditësuar automatikisht nga BIK (bislame.com)."
@@ -243,6 +243,12 @@ function Sections() {
             desc="Kategori të ndara sipas tematikave."
             href="/video"
             imageSrc="/inside.jpg"
+          />
+          <Feature
+            title="FAQ — Pyetje të shpeshta"
+            desc="Përgjigje të shkurtra rreth xhamisë dhe islamit."
+            href="/faqs"
+            imageSrc="/xhamia.jpg"
           />
           <Feature
             title="Platformë e zgjerueshme"
@@ -310,7 +316,7 @@ function Quotes() {
         </div>
 
         <div className="mt-6 grid gap-4 grid-cols-2 md:grid-cols-3">
-          {QUOTES.slice(0, 9).map((q, idx) => (
+          {QUOTES.slice(0, 6).map((q, idx) => (
             <MotionCard
               key={`${q.ref}-${idx}`}
               className="rounded-3xl border border-border/70 bg-background p-6 shadow-sm"

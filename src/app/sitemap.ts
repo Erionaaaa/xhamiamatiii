@@ -1,8 +1,6 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 
-export const revalidate = 60 * 60; // 1 orë
-
 function normalizeBaseUrl(value: string) {
   return value.replace(/\/$/, "");
 }
@@ -15,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPaths = [
     "/",
     "/orari",
+    "/faqs",
     "/video",
     "/akademia",
     "/ajete",

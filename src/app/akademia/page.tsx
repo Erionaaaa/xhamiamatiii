@@ -5,8 +5,6 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { prisma } from "@/lib/prisma";
 import { MotionSection, MotionCard } from "@/components/site/motion";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = {
   title: "Akademia — Xhamia Mati 1",
   description:

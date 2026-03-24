@@ -9,6 +9,7 @@ const nav = [
   { href: "/", label: "Ballina" },
   { href: "/xhamia", label: "Xhamia" },
   { href: "/orari", label: "Orari i namazit" },
+  { href: "/faqs", label: "FAQ" },
   { href: "/video", label: "Video" },
   { href: "/ajete", label: "Ajete & Duate" },
   { href: "/akademia", label: "Akademia" },

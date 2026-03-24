@@ -1,7 +1,5 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
-
 export default function OpenGraphImage() {
   return new ImageResponse(
     (
@@ -23,10 +21,10 @@ export default function OpenGraphImage() {
             "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
         }}
       >
-        <div style={{ maxWidth: 980 }}>
+        <div style={{ maxWidth: 980, display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              display: "inline-flex",
+              display: "flex",
               alignItems: "center",
               gap: 16,
               padding: "14px 18px",
@@ -46,7 +44,14 @@ export default function OpenGraphImage() {
             />
             <span style={{ fontSize: 26, fontWeight: 700 }}>Xhamia Mati 1</span>
           </div>
-          <div style={{ marginTop: 26, lineHeight: 1.05 }}>
+          <div
+            style={{
+              marginTop: 26,
+              lineHeight: 1.05,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <div style={{ fontSize: 62, letterSpacing: -1 }}>
               Orari, Akademia & Video
             </div>
