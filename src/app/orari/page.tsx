@@ -287,39 +287,6 @@ export default async function PrayerTimesPage() {
                 </p>
               </div>
 
-              <MotionCard className="mt-6 overflow-hidden rounded-3xl border border-border/70 bg-background shadow-sm">
-                <div className="grid gap-4 p-5 sm:p-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center">
-                  <div>
-                    <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-xs font-semibold text-muted-foreground">
-                      <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                      Vizual
-                    </div>
-                    <h3 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
-                      Lëvizjet e namazit (pamje e thjeshtë)
-                    </h3>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                      Një ilustrim i shpejtë për ta pasur më të lehtë me radhën e
-                      veprimeve. Teksti poshtë e shpjegon hap pas hapi.
-                    </p>
-                  </div>
-
-                  <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-muted">
-                    <div className="relative aspect-[4/3] w-full">
-                      <Image
-                        src="/falja.png"
-                        alt="Ilustrim i lëvizjeve të faljes së namazit"
-                        fill
-                        sizes="(min-width: 1024px) 420px, 95vw"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="border-t border-border/70 bg-background/70 px-4 py-3 text-xs text-muted-foreground">
-                      Këshillë: nëse je fillestar, fillo me bazat dhe përsërite çdo ditë.
-                    </div>
-                  </div>
-                </div>
-              </MotionCard>
-
               <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {prayerGuideSteps.map((step, index) => (
                   <MotionCard
@@ -329,8 +296,17 @@ export default async function PrayerTimesPage() {
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-sm font-semibold text-background">
-                        {index + 1}
+                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-2xl border border-border/70 bg-muted">
+                        <Image
+                          src="/falja.png"
+                          alt="Lëvizje e namazit"
+                          fill
+                          sizes="40px"
+                          className="object-cover"
+                          style={{
+                            objectPosition: `${Math.round((index / Math.max(1, prayerGuideSteps.length - 1)) * 100)}% 50%`,
+                          }}
+                        />
                       </div>
                       <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-border/70 bg-muted/40 text-muted-foreground">
                         <StepIcon kind={step.icon} />
