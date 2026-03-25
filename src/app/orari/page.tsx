@@ -184,16 +184,6 @@ export default async function PrayerTimesPage() {
                   />
                 </div>
 
-                <div className="mt-4">
-                  <Link
-                    href="/namazi"
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border/70 bg-background/80 px-5 py-2 text-xs font-semibold text-foreground transition hover:bg-muted"
-                  >
-                    Namazi shqip (interaktiv)
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-
                 <div className="mt-6 text-xs text-muted-foreground">
                   Burimi: BIK (bislame.com), me rezervë Aladhan
                 </div>
@@ -286,18 +276,19 @@ export default async function PrayerTimesPage() {
               <div className="max-w-3xl">
                 <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-xs font-semibold text-muted-foreground">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                  Namazi shqip (interaktiv)
+                  Udhëzues interaktiv i namazit
                 </div>
                 <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-                  Kliko vakatin dhe ndiq hapat me “dove”
+                  Zgjidh vakatin dhe shiko si falet hap pas hapi
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                  Për Drekën do të shfaqen menjëherë 4 Farz dhe 4 Sunnet. Pastaj shigjeta/dove
-                  lëviz në progres dhe tregon çka vjen hap pas hapi.
+                  Këtu e ke udhëzimin kryesor për secilin vakt. Hape Farzin ose Sunnetin
+                  dhe do ta shohësh me rend: hyrja në namaz, leximi, rukuja, sexhdet,
+                  ettehijati dhe selami, me shpjegim më të qartë për fillestarë.
                 </p>
               </div>
 
-              <NamaziInteractive variant="compact" />
+              <NamaziInteractive />
             </div>
 
             <div className="mt-10 rounded-[2rem] border border-border/70 bg-background p-6 shadow-sm sm:p-8">
@@ -307,12 +298,12 @@ export default async function PrayerTimesPage() {
                   Udhëzues i shkurtër
                 </div>
                 <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-                  Si të falemi
+                  Si të falemi më gjerësisht
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                  Më poshtë është një përmbledhje e thjeshtë e hapave kryesorë të
-                  namazit. Është menduar si udhëzim i shpejtë për fillestarë dhe
-                  si kujtesë praktike në faqe.
+                  Më poshtë është një përmbledhje më e zgjeruar e hapave kryesorë të
+                  namazit. Është menduar për fillestarë që duan ta kuptojnë më qartë
+                  rendin e lëvizjeve dhe çfarë bëhet në secilën pjesë.
                 </p>
               </div>
 
