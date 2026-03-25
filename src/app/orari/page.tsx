@@ -5,6 +5,7 @@ import { getPrayerTimesForPrishtina } from "@/lib/prayer-times";
 import { MotionSection, MotionCard } from "@/components/site/motion";
 import { NextPrayerCountdown } from "@/components/site/NextPrayerCountdown";
 import { getNextPrayer } from "@/lib/next-prayer";
+import { NamaziInteractive } from "@/components/site/NamaziInteractive";
 
 export const metadata = {
   title: "Orari i namazit — Xhamia Mati 1",
@@ -53,7 +54,7 @@ export default async function PrayerTimesPage() {
   const primaryTutorialVideo = prayerTutorialVideos[0] ?? null;
   const prayerGuideSteps = [
     {
-      image: "/marrjaeabdesit1.jpg",
+      image: "/marjaeabdesit1.jpg",
       title: "Përgatitja",
       body: "Merr abdes, pastro vendin e faljes, drejtohu nga kibla dhe bëje nijetin në zemër për namazin që do të falësh.",
     },
@@ -183,6 +184,16 @@ export default async function PrayerTimesPage() {
                   />
                 </div>
 
+                <div className="mt-4">
+                  <Link
+                    href="/namazi"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border/70 bg-background/80 px-5 py-2 text-xs font-semibold text-foreground transition hover:bg-muted"
+                  >
+                    Namazi shqip (interaktiv)
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+
                 <div className="mt-6 text-xs text-muted-foreground">
                   Burimi: BIK (bislame.com), me rezervë Aladhan
                 </div>
@@ -191,7 +202,7 @@ export default async function PrayerTimesPage() {
               <MotionCard className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-zinc-950 shadow-2xl">
                 <div className="relative h-[320px] w-full">
                   <Image
-                    src="/inside.jpg"
+                    src="/xhamia.jpg"
                     alt="Brendësia e xhamisë"
                     fill
                     className="object-cover"
@@ -269,6 +280,24 @@ export default async function PrayerTimesPage() {
                   </MotionCard>
                 ))}
               </div>
+            </div>
+
+            <div className="mt-10 rounded-[2rem] border border-border/70 bg-background p-6 shadow-sm sm:p-8">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-xs font-semibold text-muted-foreground">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  Namazi shqip (interaktiv)
+                </div>
+                <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+                  Kliko vakatin dhe ndiq hapat me “dove”
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                  Për Drekën do të shfaqen menjëherë 4 Farz dhe 4 Sunnet. Pastaj shigjeta/dove
+                  lëviz në progres dhe tregon çka vjen hap pas hapi.
+                </p>
+              </div>
+
+              <NamaziInteractive variant="compact" />
             </div>
 
             <div className="mt-10 rounded-[2rem] border border-border/70 bg-background p-6 shadow-sm sm:p-8">

@@ -155,8 +155,8 @@ export default function FaqsPage() {
       />
 
       <MotionSection>
-        <Container className="py-12">
-          <div className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-background shadow-sm">
+        <Container className="py-10 md:py-14">
+          <div className="relative overflow-hidden rounded-[2.2rem] border border-border/70 bg-background shadow-sm shadow-black/5">
             <div className="absolute inset-0">
               <Image
                 src="/inside.jpg"
@@ -166,29 +166,29 @@ export default function FaqsPage() {
                 className="object-cover object-center"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
+              <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(4,12,28,0.86),rgba(4,12,28,0.58)_42%,rgba(4,12,28,0.24)_72%,rgba(4,12,28,0.12))]" />
             </div>
-            <div className="relative grid gap-6 p-8 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-end">
+            <div className="relative grid gap-6 p-6 sm:p-8 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-end">
               <div className="text-zinc-50">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/25 px-3 py-1 text-xs text-zinc-200 backdrop-blur">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-zinc-100 backdrop-blur-sm">
                   <span className="h-2 w-2 rounded-full bg-emerald-400" />
                   Qartësi • orientim • komunitet
                 </div>
-                <h1 className="mt-3 text-4xl font-semibold tracking-tight">
+                <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
                   Pyetje të shpeshta (FAQ)
                 </h1>
-                <p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-200">
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-200 sm:text-base">
                   Këtu gjeni përgjigje të shkurtra e praktike rreth Xhamisë “Mati 1”
                   dhe bazave të islamit. Për çështje specifike personale, na shkruani
                   te kontaktet.
                 </p>
-                <div className="mt-5 text-xs text-zinc-200/90">
+                <div className="mt-5 text-xs font-medium uppercase tracking-[0.14em] text-zinc-200/90">
                   Hap kategorinë që të intereson dhe zgjero pyetjet një nga një.
                 </div>
               </div>
 
-              <div className="grid gap-3 rounded-3xl border border-white/15 bg-black/25 p-5 text-sm text-zinc-100 backdrop-blur-sm">
-                <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/70">
+              <div className="grid gap-4 rounded-3xl border border-white/20 bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(255,255,255,0.07))] p-5 text-sm text-zinc-100 backdrop-blur-md">
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
                   Kategori
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -196,46 +196,33 @@ export default function FaqsPage() {
                     <a
                       key={g.tag}
                       href={`#${encodeURIComponent(g.tag)}`}
-                      className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/90 transition hover:bg-white/15"
+                      className="rounded-full border border-white/30 bg-white/12 px-3 py-1.5 text-xs font-semibold text-white/95 transition hover:-translate-y-0.5 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                     >
                       {g.tag} <span className="text-white/65">({g.items.length})</span>
                     </a>
                   ))}
                 </div>
-                <div className="text-xs text-white/70">
+                <div className="rounded-2xl border border-white/15 bg-black/25 px-3 py-2 text-xs text-white/80">
                   Këshillë: hap një pyetje dhe ruaje këtë faqe për përdorim të shpejtë.
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 space-y-6">
-            <MotionCard className="rounded-[2rem] border border-border/70 bg-[linear-gradient(160deg,rgba(16,185,129,0.10),rgba(59,130,246,0.08)_38%,rgba(245,158,11,0.08)_72%,rgba(255,255,255,0.01))] p-6 shadow-sm">
-              <div className="text-sm font-semibold">Për lexuesit</div>
-              <div className="mt-2 text-sm leading-7 text-muted-foreground">
-                Këshillë e shpejtë: përdor <span className="font-semibold">Ctrl + F</span> (ose
-                kërkimin në telefon) për ta gjetur pyetjen brenda sekondash. Hap pyetjen që të
-                intereson dhe lexo përgjigjen me qetësi.
-              </div>
-              <div className="mt-4 grid gap-3 md:grid-cols-3">
-                <Tip title="Shkurt & qartë" body="Përgjigjet janë të përmbledhura për orientim të shpejtë." />
-                <Tip title="Respekt në xhami" body="Qetësi, veshje modeste dhe telefon në heshtje." />
-                <Tip title="Mëso gradualisht" body="Namazi dhe mësimi ndërtohen hap pas hapi — mos u ngut." />
-              </div>
-            </MotionCard>
-
+          <div className="mt-8 space-y-5 sm:space-y-6">
             {grouped.map((group) => (
               <MotionCard
                 key={group.tag}
-                className="rounded-[2rem] border border-border/70 bg-background p-6 shadow-sm"
+                className="relative overflow-hidden rounded-[1.7rem] border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.78))] p-5 shadow-sm shadow-black/5 dark:bg-[linear-gradient(180deg,rgba(15,23,42,0.78),rgba(2,6,23,0.72))] sm:p-6"
               >
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.10),transparent_42%)]" />
                 <div
                   id={encodeURIComponent(group.tag)}
-                  className="scroll-mt-24 text-sm font-semibold"
+                  className="relative scroll-mt-24 text-sm font-semibold uppercase tracking-[0.1em] text-foreground/90"
                 >
                   {group.tag}
                 </div>
-                <div className="mt-3 divide-y divide-border/60">
+                <div className="relative mt-3 divide-y divide-border/70 rounded-2xl border border-border/50 bg-background/65 px-3 sm:px-4">
                   {group.items.map((item) => (
                     <FaqItem key={item.q} q={item.q} a={item.a} />
                   ))}
@@ -246,15 +233,6 @@ export default function FaqsPage() {
         </Container>
       </MotionSection>
     </main>
-  );
-}
-
-function Tip({ title, body }: { title: string; body: string }) {
-  return (
-    <div className="rounded-2xl border border-border/70 bg-background/70 p-4">
-      <div className="text-sm font-semibold">{title}</div>
-      <div className="mt-1 text-sm leading-7 text-muted-foreground">{body}</div>
-    </div>
   );
 }
 

@@ -78,5 +78,59 @@ export const QUOTES: Quote[] = [
     sq: "“Dhe thuaj: O Zoti im, ma shto diturinë.”",
     ref: "Taha 20:114",
   },
+  {
+    kind: "Ajet",
+    ar: "وَلَا تَيْـَٔسُوا۟ مِن رَّوْحِ ٱللَّهِ",
+    sq: "E mos e humbni shpresën nga mëshira e Allahut.",
+    ref: "Jusuf 12:87",
+  },
+  {
+    kind: "Ajet",
+    ar: "حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ",
+    sq: "Na mjafton Allahu dhe sa i mrekullueshëm është Ai si Mbikëqyrës.",
+    ref: "Al Imran 3:173",
+  },
+  {
+    kind: "Ajet",
+    ar: "يُرِيدُ ٱللَّهُ بِكُمُ ٱلْيُسْرَ وَلَا يُرِيدُ بِكُمُ ٱلْعُسْرَ",
+    sq: "Allahu dëshiron për ju lehtësi, e nuk dëshiron vështirësi.",
+    ref: "El-Bekare 2:185",
+  },
+  {
+    kind: "Ajet",
+    ar: "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ",
+    sq: "Dhe Ai është me ju kudo që të jeni.",
+    ref: "El-Hadid 57:4",
+  },
+  {
+    kind: "Hadith",
+    ar: "مَنْ صَمَتَ نَجَا",
+    sq: "Kush heshtë, shpëton.",
+    ref: "Tirmidhi",
+  },
+  {
+    kind: "Hadith",
+    ar: "الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ",
+    sq: "Musliman i vërtetë është ai nga gjuha dhe dora e të cilit janë të sigurt muslimanët e tjerë.",
+    ref: "Buhari",
+  },
+  {
+    kind: "Hadith",
+    ar: "تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ صَدَقَةٌ",
+    sq: "Buzëqeshja jote ndaj vëllait tënd është sadaka.",
+    ref: "Tirmidhi",
+  },
+  {
+    kind: "Dua",
+    ar: "رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا حَسَنَةً وَفِى ٱلْـَٔاخِرَةِ حَسَنَةً",
+    sq: "O Zoti ynë, na jep të mira në këtë botë dhe në botën tjetër.",
+    ref: "El-Bekare 2:201 (dua)",
+  },
+  {
+    kind: "Dua",
+    ar: "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا",
+    sq: "O Zoti ynë, mos na i lak zemrat tona pasi na ke udhëzuar.",
+    ref: "Al Imran 3:8 (dua)",
+  },
 ];
 

@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="sq">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Xhamia Mati 1</title>
+    <meta
+      name="description"
+      content="Xhamia Mati 1"
+    />
+    <style>
+      :root {
+        --bg: #08101d;
+        --surface: rgba(255, 255, 255, 0.08);
+        --surface-strong: rgba(255, 255, 255, 0.12);
+        --border: rgba(255, 255, 255, 0.16);
+        --text: #f5f7fb;
+        --muted: #c5cedb;
+        --brand: #22c55e;
+        --brand-2: #38bdf8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background:
+          radial-gradient(900px circle at 0% 0%, rgba(34, 197, 94, 0.2), transparent 50%),
+          radial-gradient(900px circle at 100% 0%, rgba(56, 189, 248, 0.16), transparent 54%),
+          radial-gradient(1000px circle at 40% 100%, rgba(59, 130, 246, 0.14), transparent 60%),
+          var(--bg);
+      }
+
+      .wrap {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 10px;
+        z-index: 9;
+        margin-top: 12px;
+        padding: 10px 14px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: rgba(8, 16, 29, 0.75);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .brand img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 4px;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: 0.02em;
+      }
+
+      .brand p {
+        margin: 2px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      nav {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text);
+        font-size: 12px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 8px 11px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      nav a:hover {
+        border-color: rgba(34, 197, 94, 0.6);
+        color: #d8ffe7;
+      }
+
+      .hero {
+        margin-top: 16px;
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 22px;
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+      }
+
+      .hero h2 {
+        margin: 0;
+        font-size: clamp(30px, 5vw, 48px);
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+      }
+
+      .hero p {
+        max-width: 70ch;
+        line-height: 1.7;
+        color: var(--muted);
+        margin: 14px 0 0;
+      }
+
+      .hero-actions {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+        padding: 11px 14px;
+        border-radius: 11px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .btn.primary {
+        background: linear-gradient(120deg, var(--brand), var(--brand-2));
+        color: #031220;
+      }
+
+      .btn.ghost {
+        color: var(--text);
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .notice {
+        margin-top: 14px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px dashed rgba(56, 189, 248, 0.5);
+        background: rgba(56, 189, 248, 0.08);
+        font-size: 13px;
+        color: #d6f2ff;
+      }
+
+      section {
+        margin-top: 16px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 18px;
+        background: var(--surface);
+      }
+
+      section h3 {
+        margin: 0 0 12px;
+        font-size: 20px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 10px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .card b {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 14px;
+      }
+
+      .times {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .times th,
+      .times td {
+        text-align: left;
+        padding: 11px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .times th {
+        color: #ddf7e8;
+        font-size: 13px;
+      }
+
+      .times td {
+        font-size: 14px;
+      }
+
+      .times tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+      }
+
+      .video {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        overflow: hidden;
+      }
+
+      .video .thumb {
+        height: 120px;
+        background: linear-gradient(120deg, rgba(59, 130, 246, 0.3), rgba(34, 197, 94, 0.3));
+        display: grid;
+        place-items: center;
+        font-size: 28px;
+      }
+
+      .video .body {
+        padding: 12px;
+      }
+
+      .video .body b {
+        font-size: 14px;
+      }
+
+      .video .body p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      details {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      details + details {
+        margin-top: 8px;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      details p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 10px;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .panel p {
+        margin: 0 0 8px;
+        color: var(--muted);
+      }
+
+      .panel ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .panel li {
+        margin: 6px 0;
+      }
+
+      .form {
+        display: grid;
+        gap: 8px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px;
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 108px;
+        resize: vertical;
+      }
+
+      .footer {
+        margin: 16px 0 40px;
+        color: var(--muted);
+        font-size: 12px;
+        text-align: center;
+      }
+
+      @media (max-width: 860px) {
+        .topbar {
+          position: static;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo"><img src="/logo.png" alt="Logo e Xhamisë Mati 1" /></div>
+          <div>
+            <h1>Xhamia Mati 1</h1>
+            <p>Prishtinë</p>
+          </div>
+        </div>
+        <nav aria-label="Navigimi kryesor">
+          <a href="#orari">Orari</a>
+          <a href="#video">Video</a>
+          <a href="#faq">FAQ</a>
+          <a href="#aktivitete">Aktivitete</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h2>Mirë se vini</h2>
+        <div class="hero-actions">
+          <a class="btn primary" href="#orari">Shiko orarin e namazit</a>
+          <a class="btn ghost" href="#kontakt">Na kontakto</a>
+        </div>
+        <div class="notice">Përmbajtja do të përditësohet.</div>
+      </section>
+
+      <section id="aktivitete">
+        <h3>Seksionet Kryesore</h3>
+        <div class="cards">
+          <article class="card">
+            <b>Orari i Namazit</b>
+            <p id="home-orari">-</p>
+          </article>
+          <article class="card">
+            <b>Akademia</b>
+            <p id="home-akademia">-</p>
+          </article>
+          <article class="card">
+            <b>Video</b>
+            <p id="home-video">-</p>
+          </article>
+          <article class="card">
+            <b>FAQ</b>
+            <p id="home-faq">-</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="orari">
+        <h3>Orari i Namazit</h3>
+        <table class="times" aria-label="Orari ditor i namazit">
+          <thead>
+            <tr>
+              <th>Namazi</th>
+              <th>Koha</th>
+              <th>Shënim</th>
+            </tr>
+          </thead>
+          <tbody id="orari-body">
+            <tr>
+              <td colspan="3">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="video">
+        <h3>Video</h3>
+        <div class="video-grid" id="video-list">
+          <article class="video">
+            <div class="thumb">▶</div>
+            <div class="body">
+              <b>-</b>
+              <p>-</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h3>FAQ</h3>
+        <details>
+          <summary>-</summary>
+          <p>-</p>
+        </details>
+        <details>
+          <summary>-</summary>
+          <p>-</p>
+        </details>
+        <details>
+          <summary>-</summary>
+          <p>-</p>
+        </details>
+      </section>
+
+      <section id="kontakt">
+        <h3>Kontakt</h3>
+        <div class="contact-grid">
+          <div class="panel">
+            <p>-</p>
+            <ul>
+              <li>Email: -</li>
+              <li>Telefon: -</li>
+              <li>Adresa: -</li>
+            </ul>
+          </div>
+          <form class="panel form" onsubmit="return false;" aria-label="Formë kontakti statike">
+            <input type="text" placeholder="Emri dhe mbiemri" />
+            <input type="email" placeholder="Email" />
+            <textarea placeholder="Mesazhi juaj..."></textarea>
+            <button class="btn primary" type="submit">Dërgo</button>
+          </form>
+        </div>
+      </section>
+
+      <p class="footer">© 2026 Xhamia Mati 1</p>
+    </div>
+  </body>
+</html>
+
