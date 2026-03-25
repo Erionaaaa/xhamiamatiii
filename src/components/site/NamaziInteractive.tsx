@@ -86,13 +86,13 @@ function GuideNavigator({
         <div className="mx-auto w-full max-w-5xl">
           {active?.imageSrc ? (
             <div className="overflow-hidden border border-white/10 bg-black">
-              <div className="relative h-[42vh] min-h-[260px] sm:h-[56vh]">
+              <div className="relative h-[34vh] min-h-[220px] sm:h-[42vh]">
                 <Image
                   src={active.imageSrc}
                   alt={active.title}
                   fill
                   sizes="100vw"
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </div>
@@ -112,14 +112,20 @@ function GuideNavigator({
                 {active.recitationTitle ?? "Thuaj"}
               </div>
               <div className="mt-2 space-y-2">
-                {active.recitations.map((line) => (
+                {active.recitations.map((line) => {
+                  const isSureLine = /(surja|sure|fatiha)/i.test(line);
+                  return (
                   <div
                     key={line}
-                    className="w-fit max-w-full bg-white/14 px-2 py-1 text-base leading-snug text-white sm:text-lg"
+                    className={[
+                      "w-fit max-w-full bg-white/14 px-2 py-1 text-base leading-snug text-white sm:text-lg",
+                      isSureLine ? "italic" : "",
+                    ].join(" ")}
                   >
                     {line}
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ) : null}
