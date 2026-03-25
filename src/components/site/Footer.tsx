@@ -17,7 +17,7 @@ const QUICK_LINKS = [
 ];
 
 export async function Footer() {
-  const info = await prisma.mosqueInfo.findFirst();
+  const info = await prisma.mosqueInfo.findFirst().catch(() => null);
   const year = new Date().getFullYear();
   const mosqueName = info?.name ?? "Xhamia Mati 1";
   const mosqueCity = info?.city ?? "Prishtinë";

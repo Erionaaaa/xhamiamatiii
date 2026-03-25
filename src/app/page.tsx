@@ -14,24 +14,32 @@ import { GalleryLightbox } from "@/components/site/GalleryLightbox";
 import { getNextPrayer } from "@/lib/next-prayer";
 
 export default async function Home() {
-  const info = await prisma.mosqueInfo.findFirst();
   const prayer = await getPrayerTimesForPrishtina();
-  const latestPosts = await prisma.academyPost.findMany({
-    where: { isActive: true },
-    orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
-    take: 4,
-  });
-  const latestActivities = await prisma.activity.findMany({
-    where: { isActive: true },
-    orderBy: [{ startsAt: "desc" }, { createdAt: "desc" }],
-    take: 4,
-  });
-  const latestVideos = await prisma.video.findMany({
-    where: { isActive: true },
-    orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
-    take: 6,
-    include: { category: true },
-  });
+  const [info, latestPosts, latestActivities, latestVideos] = await Promise.all([
+    prisma.mosqueInfo.findFirst().catch(() => null),
+    prisma.academyPost
+      .findMany({
+        where: { isActive: true },
+        orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+        take: 4,
+      })
+      .catch(() => []),
+    prisma.activity
+      .findMany({
+        where: { isActive: true },
+        orderBy: [{ startsAt: "desc" }, { createdAt: "desc" }],
+        take: 4,
+      })
+      .catch(() => []),
+    prisma.video
+      .findMany({
+        where: { isActive: true },
+        orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+        take: 6,
+        include: { category: true },
+      })
+      .catch(() => []),
+  ]);
 
   const next = getNextPrayer(prayer.timings, prayer.timezone ?? "Europe/Belgrade");
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com").replace(/\/$/, "");
@@ -499,6 +507,7 @@ function Latest({
                       key={a.id}
                       href={`/aktivitete/${a.slug}`}
                       className="block px-6 py-4 transition hover:bg-muted/50"
+                      
                     >
                       <div className="line-clamp-2 text-sm font-semibold leading-6">{a.title}</div>
                       {a.summary ? (

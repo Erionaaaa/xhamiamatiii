@@ -53,42 +53,42 @@ export default async function PrayerTimesPage() {
   const primaryTutorialVideo = prayerTutorialVideos[0] ?? null;
   const prayerGuideSteps = [
     {
-      icon: "droplet",
+      image: "/marrjaeabdesit1.jpg",
       title: "Përgatitja",
       body: "Merr abdes, pastro vendin e faljes, drejtohu nga kibla dhe bëje nijetin në zemër për namazin që do të falësh.",
     },
     {
-      icon: "spark",
+      image: "/filliminamazit1.jpg",
       title: "Fillimi i namazit",
       body: "Ngriji duart dhe thuaj Allahu Ekber për të hyrë në namaz. Pastaj qëndro në këmbë me qetësi dhe fillo leximin.",
     },
     {
-      icon: "book",
+      image: "/leximinekembe2.jpg",
       title: "Leximi në këmbë",
       body: "Lexo El-Fatihën. Në dy rekatet e para lexohet edhe një sure ose disa ajete të tjera nga Kurani.",
     },
     {
-      icon: "bow",
+      image: "/rukje1.jpg",
       title: "Ruku dhe ngritja",
       body: "Përkulu në ruku, qëndro i qetë dhe pastaj ngrihu sërish në këmbë derisa trupi të stabilizohet plotësisht.",
     },
     {
-      icon: "sujud",
+      image: "/dysexhdet1.jpg",
       title: "Dy sexhdet",
       body: "Bëj sexhden e parë, ulu shkurt mes dy sexhdeve dhe pastaj bëj sexhden e dytë. Kjo përbën pjesën kryesore të një rekati.",
     },
     {
-      icon: "repeat",
+      image: "/ikona8.jpg",
       title: "Rekati tjetër",
       body: "Ngrihu për rekatin tjetër dhe përsëriti të njëjtat hapa. Numri i rekateve varet nga namazi që po fal.",
     },
     {
-      icon: "check",
+      image: "/etijati1.jpg",
       title: "Ettehijati dhe përfundimi",
       body: "Në uljen e fundit lexo ettehijatin, salavatet dhe lutjet, pastaj jep selam në të djathtë dhe në të majtë për ta mbyllur namazin.",
     },
     {
-      icon: "calendar",
+      image: "/perfundimi1.jpg",
       title: "Vazhdimësia dhe rregullsia",
       body: "Namazi falet pesë herë në ditë. Mundohu ta falësh në kohën e caktuar dhe ndërto gradualisht zakonin e rregullt — secila falje e vonuar është e plotësueshme.",
     },
@@ -287,37 +287,34 @@ export default async function PrayerTimesPage() {
                 </p>
               </div>
 
-              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {prayerGuideSteps.map((step, index) => (
+              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-2">
+                {prayerGuideSteps.map((step) => (
                   <MotionCard
                     key={step.title}
-                    className={`rounded-3xl border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02))] p-6 shadow-sm${
-                      index === prayerGuideSteps.length - 1 ? " xl:col-span-2" : ""
-                    }`}
+                    className="overflow-hidden rounded-3xl border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02))] shadow-sm"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-2xl border border-border/70 bg-muted">
+                    <div className="grid min-h-[250px] grid-cols-[145px_minmax(0,1fr)] sm:grid-cols-[180px_minmax(0,1fr)]">
+                      <div className="relative h-full w-full border-r border-border/70 bg-muted">
                         <Image
-                          src="/falja.png"
-                          alt="Lëvizje e namazit"
+                          src={step.image}
+                          alt={step.title}
                           fill
-                          sizes="40px"
+                          sizes="(min-width: 1280px) 180px, (min-width: 640px) 180px, 145px"
                           className="object-cover"
-                          style={{
-                            objectPosition: `${Math.round((index / Math.max(1, prayerGuideSteps.length - 1)) * 100)}% 50%`,
-                          }}
                         />
                       </div>
-                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-border/70 bg-muted/40 text-muted-foreground">
-                        <StepIcon kind={step.icon} />
-                      </div>
-                      <div className="text-base font-semibold tracking-tight">
-                        {step.title}
+                      <div className="p-5 sm:p-6">
+                        <div className="text-base font-semibold tracking-tight">
+                          {step.title}
+                        </div>
+                        <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                          {step.body}
+                        </p>
+                        <div className="mt-4 inline-flex rounded-full border border-border/70 bg-muted/35 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                          Hap i namazit
+                        </div>
                       </div>
                     </div>
-                    <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                      {step.body}
-                    </p>
                   </MotionCard>
                 ))}
               </div>
@@ -349,7 +346,7 @@ export default async function PrayerTimesPage() {
                   {afterPrayerItems.map((item) => (
                     <MotionCard
                       key={item.title}
-                      className="rounded-3xl border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02))] p-5 shadow-sm"
+                      className="rounded-4xl border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02))] p-5 shadow-sm"
                     >
                       <div className="text-base font-semibold tracking-tight">
                         {item.title}
@@ -362,18 +359,23 @@ export default async function PrayerTimesPage() {
                 </div>
               </div>
 
-              <div className="mt-4 rounded-3xl border border-border/70 bg-background px-5 py-4">
-                <p className="text-sm leading-7 text-muted-foreground">
-                  Material shtesë për fillestarë:
-                </p>
-                <a
-                  href={beginnerPrayerPdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center justify-center rounded-full border border-border/70 bg-background px-4 py-2 text-xs font-semibold text-foreground transition hover:bg-muted"
-                >
-                  Hap PDF: Falja e namazit për fillestarë
-                </a>
+              <div className="mt-4 rounded-3xl border border-amber-300/45 bg-[linear-gradient(150deg,rgba(245,158,11,0.16),rgba(16,185,129,0.08)_60%,rgba(255,255,255,0.02))] px-5 py-4 shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <p className="text-sm font-bold leading-7 text-muted-foreground">
+                    Material shtesë për fillestarë:
+                  </p>
+                  <a
+                    href={beginnerPrayerPdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-amber-500/70 bg-amber-500 px-5 py-2 text-sm font-extrabold text-zinc-950 shadow-[0_10px_26px_-12px_rgba(245,158,11,0.9)] transition duration-200 hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-[0_16px_30px_-14px_rgba(245,158,11,0.95)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/70 focus-visible:ring-offset-2"
+                  >
+                    <span className="inline-flex rounded-full border border-zinc-900/20 bg-zinc-950/10 px-2 py-0.5 text-[11px] font-black tracking-[0.08em]">
+                      PDF
+                    </span>
+                    Hap udhezuesin e namazit
+                  </a>
+                </div>
               </div>
 
               <div className="mt-8 rounded-3xl border border-border/70 bg-[linear-gradient(160deg,rgba(16,185,129,0.10),rgba(59,130,246,0.08)_38%,rgba(245,158,11,0.08)_72%,rgba(255,255,255,0.01))] p-5 sm:p-6">
@@ -485,165 +487,5 @@ function TimeCard({
       </div>
     </MotionCard>
   );
-}
-
-function StepIcon({
-  kind,
-}: {
-  kind:
-    | "droplet"
-    | "spark"
-    | "book"
-    | "bow"
-    | "sujud"
-    | "repeat"
-    | "check"
-    | "calendar";
-}) {
-  const common = "h-5 w-5";
-  switch (kind) {
-    case "droplet":
-      return (
-        <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-          <path
-            d="M12 2s6 7 6 12a6 6 0 1 1-12 0c0-5 6-12 6-12Z"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          />
-        </svg>
-      );
-    case "spark":
-      return (
-        <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-          <path
-            d="M12 2l1.4 5.2L19 9l-5.6 1.8L12 16l-1.4-5.2L5 9l5.6-1.8L12 2Z"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
-    case "book":
-      return (
-        <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-          <path
-            d="M4 5.5C4 4.1 5.1 3 6.5 3H20v16.5c0 .8-.7 1.5-1.5 1.5H6.5C5.1 21 4 19.9 4 18.5V5.5Z"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          />
-          <path d="M8 7h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-          <path d="M8 11h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        </svg>
-      );
-    case "bow":
-      return (
-        <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-          <path
-            d="M4 12h16"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <path
-            d="M8 12c2-5 6-5 8 0"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "sujud":
-      return (
-        <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-          <path
-            d="M7 10c1.5 0 2.5 1 2.5 2.5S8.5 15 7 15"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <path
-            d="M5 18h14"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <path
-            d="M10 18c0-3 2-6 2-6s2 3 2 6"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
-    case "repeat":
-      return (
-        <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-          <path
-            d="M7 7h10v4"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M17 17H7v-4"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M17 11l2-2-2-2"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M7 13l-2 2 2 2"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
-    case "check":
-      return (
-        <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-          <path
-            d="M20 6 9 17l-5-5"
-            stroke="currentColor"
-            strokeWidth="1.9"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
-    case "calendar":
-      return (
-        <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-          <path
-            d="M7 3v3M17 3v3M4.5 7.5h15"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <path
-            d="M6.5 5h11A2.5 2.5 0 0 1 20 7.5v11A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-11A2.5 2.5 0 0 1 6.5 5Z"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          />
-          <path
-            d="M8 12h8M8 16h5"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    default:
-      return null;
-  }
 }
 
