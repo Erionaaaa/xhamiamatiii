@@ -63,7 +63,7 @@ function GuideNavigator({
   const active = steps[activeIdx] ?? steps[0];
 
   useEffect(() => {
-    // Kur ndryshon modaliteti (p.sh. Farz -> Sunnet), rikthehemi në hapin e parë.
+    
     setActiveIdx(0);
   }, [steps]);
 

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
-  // Fallback që të mos prishet gjatë build.
+  // Fallback mos u prish gjate building 
   "https://example.com";
 
 export default function robots(): MetadataRoute.Robots {

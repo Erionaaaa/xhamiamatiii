@@ -47,7 +47,7 @@ async function main() {
       isActive: true,
     },
   });
-  // Video demonstruese: shtohen vetëm në instalimin e parë (kur nuk ka video).
+  
   const hasAnyVideo = (await prisma.video.count()) > 0;
   if (!hasAnyVideo) {
     await prisma.video.createMany({
@@ -85,7 +85,7 @@ async function main() {
     });
   }
 
-  // Video të reja shtohen gjithmonë me upsert (nuk bllokohen nga guard-i i mësipërm)
+  // Video të reja
   await prisma.video.upsert({
     where: { slug: "ders" },
     update: {

@@ -272,7 +272,8 @@ export default async function PrayerTimesPage() {
               </div>
             </div>
 
-            <div className="mt-10 rounded-[2rem] border border-border/70 bg-background p-6 shadow-sm sm:p-8">
+            {/* Hidden - Will add later */}
+            <div className="mt-10 rounded-[2rem] border border-border/70 bg-background p-6 shadow-sm sm:p-8 hidden">
               <div className="max-w-3xl">
                 <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-xs font-semibold text-muted-foreground">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />

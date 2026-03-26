@@ -16,15 +16,53 @@ const DEFAULT_ACTIVITY_IMAGES = [
 
 function resolveActivityImage(coverImage: string | null, seed: string) {
   const normalized = (coverImage ?? "").trim();
-  if (normalized.startsWith("/")) {
-    return normalized;
-  }
+  if (normalized.startsWith("/")) return normalized;
 
   let hash = 0;
   for (let i = 0; i < seed.length; i += 1) {
     hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
   }
+
   return DEFAULT_ACTIVITY_IMAGES[hash % DEFAULT_ACTIVITY_IMAGES.length];
+}
+
+export async function generateStaticParams() {
+  const activities = await prisma.activity.findMany({
+    where: { isActive: true },
+    select: { slug: true },
+  });
+
+  return activities.map((activity) => ({
+    slug: activity.slug,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  const a = await prisma.activity.findUnique({
+    where: { slug },
+    select: { slug: true, title: true, summary: true, isActive: true },
+  });
+
+  if (!a || !a.isActive) {
+    return {
+      title: "Aktivitete — Xhamia Mati 1",
+      description: "Njoftime për aktivitete, aksione dhe evente në xhami.",
+    };
+  }
+
+  return {
+    title: a.title,
+    description: a.summary ?? undefined,
+    alternates: {
+      canonical: `/aktivitete/${a.slug}`,
+    },
+  };
 }
 
 export default async function ActivityPage({
@@ -33,7 +71,11 @@ export default async function ActivityPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const a = await prisma.activity.findUnique({ where: { slug } });
+
+  const a = await prisma.activity.findUnique({
+    where: { slug },
+  });
+
   if (!a || !a.isActive) notFound();
 
   const latest = await prisma.activity.findMany({
@@ -41,6 +83,7 @@ export default async function ActivityPage({
     orderBy: [{ startsAt: "desc" }, { createdAt: "desc" }],
     take: 6,
   });
+
   const heroImage = resolveActivityImage(a.coverImage, a.slug);
 
   return (
@@ -58,6 +101,7 @@ export default async function ActivityPage({
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/45 to-background" />
           </div>
+
           <Container className="relative py-12">
             <Link
               href="/aktivitete"
@@ -65,9 +109,11 @@ export default async function ActivityPage({
             >
               ← Kthehu te aktivitetet
             </Link>
+
             <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-zinc-50">
               {a.title}
             </h1>
+
             {a.summary ? (
               <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-200">
                 {a.summary}
@@ -93,6 +139,7 @@ export default async function ActivityPage({
             <aside className="grid gap-4">
               <MotionCard className="rounded-3xl border border-border/70 bg-background p-6 shadow-sm">
                 <div className="text-sm font-semibold">Aktivitete të tjera</div>
+
                 <div className="mt-4 grid gap-2">
                   {latest
                     .filter((x) => x.slug !== a.slug)
@@ -127,6 +174,7 @@ export default async function ActivityPage({
                     Kontakto organizatorët për t’u përfshirë në aktivitetet e ardhshme.
                   </div>
                 </div>
+
                 <div className="p-5">
                   <Link
                     href="/kontakt"
@@ -143,30 +191,3 @@ export default async function ActivityPage({
     </main>
   );
 }
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const a = await prisma.activity.findUnique({
-    where: { slug: params.slug },
-    select: { slug: true, title: true, summary: true, isActive: true },
-  });
-
-  if (!a || !a.isActive) {
-    return {
-      title: "Aktivitete — Xhamia Mati 1",
-      description: "Njoftime për aktivitete, aksione dhe evente në xhami.",
-    };
-  }
-
-  return {
-    title: a.title,
-    description: a.summary ?? undefined,
-    alternates: {
-      canonical: `/aktivitete/${a.slug}`,
-    },
-  };
-}
-

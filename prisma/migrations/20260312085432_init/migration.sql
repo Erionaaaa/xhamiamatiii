@@ -14,7 +14,7 @@ CREATE TABLE "MosqueInfo" (
     "updatedAt" TIMESTAMP(3) NOT NULL
 );
 
--- CreateTable
+
 CREATE TABLE "VideoCategory" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE "VideoCategory" (
     "updatedAt" TIMESTAMP(3) NOT NULL
 );
 
--- CreateTable
+
 CREATE TABLE "Video" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "title" TEXT NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE "Video" (
     CONSTRAINT "Video_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "VideoCategory" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- CreateTable
+
 CREATE TABLE "AcademyPost" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "title" TEXT NOT NULL,
