@@ -266,8 +266,7 @@ export function NamaziInteractive({
 
         {!isCompact ? (
           <div className="mt-6 rounded-[1.7rem] border border-border/70 bg-background/60 p-5 text-sm leading-7 text-muted-foreground">
-            Shënim: numrat e Farz/Sunnet janë të dizajnuar për udhëzim praktik dhe mund të ndryshojnë
-            pak sipas medhhebit. Për detaje, ndiq udhëzimin e imam-it.
+          
           </div>
         ) : null}
       </div>
